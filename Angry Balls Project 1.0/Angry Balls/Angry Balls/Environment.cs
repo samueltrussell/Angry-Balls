@@ -56,7 +56,11 @@ namespace Angry_Balls
                     justClicked = true;
                 }
                 
-                Input.Update(selectedObject);
+                if (selectedObject != null)
+                {
+                    Input.Update(selectedObject);
+                }
+                
             }
             else if(mouseState.LeftButton != ButtonState.Pressed && justClicked == true)
             {
