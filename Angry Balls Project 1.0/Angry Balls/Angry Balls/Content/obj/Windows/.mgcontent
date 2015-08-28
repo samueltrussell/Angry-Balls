@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/earth.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/Bomb.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/stars.jpg</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_small_bricks_sprite_1.png</File>
+  </SourceFiles>
+</SourceFileCollection>

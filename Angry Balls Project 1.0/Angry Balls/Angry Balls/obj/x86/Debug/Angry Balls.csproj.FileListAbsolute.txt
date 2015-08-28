@@ -1,0 +1,29 @@
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Angry Balls.exe
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Angry Balls.pdb
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\MonoGame.Framework.xml
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.xml
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\obj\x86\Debug\Angry Balls.csprojResolveAssemblyReference.cache
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\obj\x86\Debug\Angry Balls.exe
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\obj\x86\Debug\Angry Balls.pdb
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Content\earth.xnb
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Content\Bomb.xnb
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Content\stars.xnb
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Content\rp_small_bricks_sprite_1.xnb
