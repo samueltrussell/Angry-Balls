@@ -59,3 +59,5 @@ C:\Users\u1011486\Desktop\Angry Balls\Angry Balls Project 1.0\Angry-Balls\Angry 
 C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Content\toolbox.xnb
 C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Content\BombTimer.xnb
 C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Content\Explosion.xnb
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\FarseerPhysics MonoGame.dll
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\FarseerPhysics MonoGame.pdb

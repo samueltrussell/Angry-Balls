@@ -23,9 +23,9 @@ namespace Angry_Balls
         //Constructor for initialisation
         public TBIListDynamic()
         {
-            bombList.Add(new Bomb(startPose1));
-            bombList.Add(new Bomb(startPose2));
-            bombList.Add(new Bomb(startPose3));
+            //bombList.Add(new Bomb(startPose1));
+            //bombList.Add(new Bomb(startPose2));
+            //bombList.Add(new Bomb(startPose3));
         }
     }
 }

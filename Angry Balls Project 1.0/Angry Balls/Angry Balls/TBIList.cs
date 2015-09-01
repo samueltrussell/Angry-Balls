@@ -60,8 +60,8 @@ namespace Angry_Balls
 
             //
             PlacedBomb.Add(new Bomb(bombStart));
-            PlacedBomb.Add(new Bomb(bombStart));
-            PlacedBomb.Add(new Bomb(bombStart));
+            //PlacedBomb.Add(new Bomb(bombStart));
+            //PlacedBomb.Add(new Bomb(bombStart));
 
 
 

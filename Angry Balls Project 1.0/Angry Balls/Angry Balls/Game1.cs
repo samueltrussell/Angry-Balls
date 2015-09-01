@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using FarseerPhysics.Dynamics;
+using System;
+
 
 namespace Angry_Balls
 {
@@ -12,6 +15,7 @@ namespace Angry_Balls
         public static GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        //Images
         public static Texture2D bombImage;
         public static Texture2D explodeImage;
         public static Texture2D environmentBackground;
@@ -19,8 +23,12 @@ namespace Angry_Balls
         public static Texture2D toolBoxBackGround;
         public static SpriteFont bombTimerFont;
 
+        //Game environment
         Environment environment;
-        public static System.Random random;  
+        public static System.Random random;
+
+        //Physics Engine
+        public static World world;
         
         //Farseer Experiment 
         
@@ -56,6 +64,16 @@ namespace Angry_Balls
         /// </summary>
         protected override void LoadContent()
         {
+            //initialize aspects of the physics engine world
+            if (world == null)
+            {
+                world = new World(Vector2.UnitY * 10000);
+            }
+            else
+            {
+                world.Clear();
+            }
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bombImage = Content.Load<Texture2D>("Bomb");
@@ -94,7 +112,11 @@ namespace Angry_Balls
             if (environment.gameState == Environment.GameState.initialize)
                 environment.initialize();
             else if (environment.gameState == Environment.GameState.run)
+            {
                 environment.update();
+                world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f, (1f / 30f)));
+                //Console.WriteLine(environment.map.TBIList.PlacedBomb[0].bombBody.LinearVelocity);
+            }
             else if (environment.gameState == Environment.GameState.pause)
 
 
