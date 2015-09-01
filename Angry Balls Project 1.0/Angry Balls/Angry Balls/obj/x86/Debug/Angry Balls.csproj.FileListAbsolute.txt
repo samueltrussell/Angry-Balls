@@ -56,3 +56,6 @@ C:\Users\u1011486\Desktop\Angry Balls\Angry Balls Project 1.0\Angry-Balls\Angry 
 C:\Users\u1011486\Desktop\Angry Balls\Angry Balls Project 1.0\Angry-Balls\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\u1011486\Desktop\Angry Balls\Angry Balls Project 1.0\Angry-Balls\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\u1011486\Desktop\Angry Balls\Angry Balls Project 1.0\Angry-Balls\Angry Balls Project 1.0\Angry Balls\Angry Balls\obj\x86\Debug\Angry Balls.csprojResolveAssemblyReference.cache
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Content\toolbox.xnb
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Content\BombTimer.xnb
+C:\Users\u0468223\Desktop\GIT Repository\Angry Balls Project 1.0\Angry Balls\Angry Balls\bin\Windows\Debug\Content\Explosion.xnb

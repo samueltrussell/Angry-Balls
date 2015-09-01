@@ -20,6 +20,7 @@ namespace Angry_Balls
             position = positionInput;
             image = Game1.brickTextureAtlas;
             size = new Point { X = brickWidth, Y = brickHeight};
+            dragable = false;
         }
 
         new public void draw(SpriteBatch spriteBatch)

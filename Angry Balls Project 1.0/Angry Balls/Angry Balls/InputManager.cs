@@ -29,10 +29,14 @@ namespace Angry_Balls
 
             MouseState mouseState = Mouse.GetState();
 
-            // once we have a selected object, update the object position using the mouse
-            Point newPosition = new Point { X = mouseState.X, Y = mouseState.Y };
-            item.PostionUpdate(newPosition);
+            // once we have a selected object, update the object as appropriate position using the mouse
+            if (item.isDragable())
+            {
+                Point newPosition = new Point { X = mouseState.X, Y = mouseState.Y };
+                item.PostionUpdate(newPosition);
 
+                item.Placed();
+            }
         }
 
         public bool JustClicked()

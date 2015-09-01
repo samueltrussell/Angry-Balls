@@ -13,16 +13,26 @@ namespace Angry_Balls
         SpriteBatch spriteBatch;
 
         public static Texture2D bombImage;
+        public static Texture2D explodeImage;
         public static Texture2D environmentBackground;
         public static Texture2D brickTextureAtlas;
+        public static Texture2D toolBoxBackGround;
+        public static SpriteFont bombTimerFont;
+
         Environment environment;
+        public static System.Random random;  
+        
+        //Farseer Experiment 
+        
+              
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            //graphics.PreferredBackBufferWidth = (640);
-            //graphics.PreferredBackBufferHeight = (480);
+            graphics.PreferredBackBufferWidth = (960);
+            graphics.PreferredBackBufferHeight = (1280);
             Content.RootDirectory = "Content";
+            random = new System.Random();
         }
 
         /// <summary>
@@ -49,8 +59,12 @@ namespace Angry_Balls
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bombImage = Content.Load<Texture2D>("Bomb");
+            explodeImage = Content.Load<Texture2D>("Explosion");
             brickTextureAtlas = Content.Load<Texture2D>("rp_small_bricks_sprite_1");
             environmentBackground = Content.Load<Texture2D>("stars");
+            toolBoxBackGround = Content.Load<Texture2D>("toolbox");
+            bombTimerFont = Content.Load<SpriteFont>("BombTimer");
+
             environment = new Environment();
             
 
@@ -77,7 +91,12 @@ namespace Angry_Balls
                 Exit();
 
             // TODO: Add your update logic here
-            environment.update();
+            if (environment.gameState == Environment.GameState.initialize)
+                environment.initialize();
+            else if (environment.gameState == Environment.GameState.run)
+                environment.update();
+            else if (environment.gameState == Environment.GameState.pause)
+
 
 
             base.Update(gameTime);

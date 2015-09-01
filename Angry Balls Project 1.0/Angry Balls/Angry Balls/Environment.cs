@@ -19,6 +19,10 @@ namespace Angry_Balls
         public Map map;
         public TBoxItem selectedObject;
         protected bool justClicked;
+        public ToolBox toolBox;
+
+        public enum GameState { run, pause, initialize };
+        public GameState gameState;
 
         //Environment Constructor
         public Environment()
@@ -27,6 +31,9 @@ namespace Angry_Balls
             Input = new InputManager();
             map = new Map();
             justClicked = false;
+            toolBox = new ToolBox();
+            gameState = GameState.run;
+            
 
 
         }
@@ -37,15 +44,28 @@ namespace Angry_Balls
             Rectangle screen = new Rectangle(Point.Zero, screenSize);
             spriteBatch.Draw(background, screen, Color.White);
 
-            foreach (Bomb element in map.TBIListDynamic.bombList)
+            //Draw Fixed Bricks (draw Map)
+            foreach (FixedBrick element in map.TBIList.FixedBrickList)
+            {
+                element.draw(spriteBatch);
+            }
+     
+            //Draw ToolBox
+            if (toolBox.Show()) toolBox.draw(spriteBatch);
+           
+            //Draw ToolBox Contents
+            foreach (Bomb element in map.TBIList.PlacedBomb)
             {
                 element.draw(spriteBatch);
             }
             
+            //map.draw();
+
         }
 
         public void update()
         {
+            //Handle Mouse Input for drag and drop
             MouseState mouseState = Mouse.GetState();
 
             if (mouseState.LeftButton == ButtonState.Pressed)
@@ -53,6 +73,7 @@ namespace Angry_Balls
                 if (justClicked == false)
                 {
                     selectedObject = map.FindClickedObject(mouseState);
+                    //selectedObject = map.FindClickedButton(mouseState);
                     justClicked = true;
                 }
                 
@@ -67,6 +88,9 @@ namespace Angry_Balls
                 justClicked = false;
             }
 
+            //Update objects on the field, if necessary
+            map.update();
+
 
             //foreach (Bomb element in bombs)
             //{
@@ -77,6 +101,11 @@ namespace Angry_Balls
             //{
             //    element.isClicked(mouseState);
             //}
+        }
+
+        public void initialize()
+        {
+            //map.initialize();
         }
 
 

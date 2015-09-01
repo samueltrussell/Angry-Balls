@@ -16,6 +16,9 @@ namespace Angry_Balls
         protected Point position; //[x,y] position in pixel space for tracking, physics, and rendering
         protected Point size; // [width, height] Size of the representatvie image in pixel space 
         protected Texture2D image;
+        protected bool dragable;
+        protected bool placed = false;
+        protected bool destroyed = false;
 
 
         //Base class constructor, SHOULD be overloaded by each derived TBI
@@ -66,6 +69,19 @@ namespace Angry_Balls
                        
         }
 
+        public bool isDragable()
+        {
+            return dragable;
+        }
 
+        public void Placed()
+        {
+            placed = true;
+        }
+
+        public bool IsDestroyed()
+        {
+            return destroyed;
+        }
     }
 }

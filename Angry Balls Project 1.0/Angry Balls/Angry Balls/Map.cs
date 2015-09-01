@@ -20,34 +20,57 @@ namespace Angry_Balls
 
         public TBoxItem FindClickedObject(MouseState mouseState)
         {
-            foreach(Bomb element in TBIListDynamic.bombList)
+            foreach(Bomb element in TBIList.PlacedBomb)
             {
                 if (element.isClicked(mouseState))
                 {
                     return element;
                 }
             }
+
+            foreach (FixedBrick element in TBIList.FixedBrickList)
+            {
+                if (element.isClicked(mouseState))
+                {
+                    return element;
+                }
+            }
+
+
             //to move placed objects in TBIList
             //foreach(Bomb element in TBIListDynamic.bombList)
             //{
-              //  if (element.isClicked(mouseState))
-                //{
-                  //  TBIList.AddRange();
-                //}
+            //  if (element.isClicked(mouseState))
+            //{
+            //  TBIList.AddRange();
+            //}
             //}
             return null;
         }
         //Move from env to map?
         //public void Draw(SpriteBatch spriteBatch)
         //{
-          //  Point screenSize = new Point { X = Game1.graphics.PreferredBackBufferWidth, Y = Game1.graphics.PreferredBackBufferHeight };
-            //Rectangle screen = new Rectangle(Point.Zero, screenSize);
-            //spriteBatch.Draw(background, screen, Color.White);
-            //
-            //foreach (Bomb element in map.TBIListDynamic.bombList)
-            //{
-              //  element.draw(spriteBatch);
-            //}
+        //  Point screenSize = new Point { X = Game1.graphics.PreferredBackBufferWidth, Y = Game1.graphics.PreferredBackBufferHeight };
+        //Rectangle screen = new Rectangle(Point.Zero, screenSize);
+        //spriteBatch.Draw(background, screen, Color.White);
+        //
+        //foreach (Bomb element in map.TBIListDynamic.bombList)
+        //{
+        //  element.draw(spriteBatch);
+        //}
+
+        public void update()
+        {
+            //update any active Bombs, remove them if they have exploded
+            foreach(Bomb element in TBIList.PlacedBomb.Reverse<Bomb>())
+            {
+                element.update();
+                if (element.IsDestroyed())
+                {
+                    TBIList.PlacedBomb.Remove(element);
+                }
+            }
+        }
 
         }
 

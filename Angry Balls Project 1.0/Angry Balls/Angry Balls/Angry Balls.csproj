@@ -38,6 +38,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Ball.cs" />
+    <Compile Include="BallTest.cs" />
     <Compile Include="Bomb.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="FixedBrick.cs" />
@@ -49,6 +51,7 @@
     <Compile Include="TBIList.cs" />
     <Compile Include="TBIListDynamic.cs" />
     <Compile Include="TBoxItem.cs" />
+    <Compile Include="ToolBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -82,7 +82,7 @@ namespace Angry_Balls
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            environment.Update();
+            environment.update();
 
             ball.Update();
 
