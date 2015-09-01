@@ -37,7 +37,7 @@ namespace Angry_Balls
             Rectangle screen = new Rectangle(Point.Zero, screenSize);
             spriteBatch.Draw(background, screen, Color.White);
 
-            foreach (Bomb element in map.TBIList.bombList)
+            foreach (Bomb element in map.TBIListDynamic.bombList)
             {
                 element.draw(spriteBatch);
             }
