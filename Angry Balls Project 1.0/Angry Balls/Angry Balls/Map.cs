@@ -28,7 +28,7 @@ namespace Angry_Balls
                 }
             }
 
-            foreach (FixedBrick element in TBIList.FixedBrickList)
+            foreach (ProxMine element in TBIList.placedMines)
             {
                 if (element.isClicked(mouseState))
                 {
@@ -36,6 +36,13 @@ namespace Angry_Balls
                 }
             }
 
+            foreach (FixedBrick element in TBIList.FixedBrickList)
+            {
+                if (element.isClicked(mouseState))
+                {
+                    return element;
+                }
+            }
 
             //to move placed objects in TBIList
             //foreach(Bomb element in TBIListDynamic.bombList)
@@ -70,6 +77,16 @@ namespace Angry_Balls
                     TBIList.PlacedBomb.Remove(element);
                 }
             }
+            //update any active mines, remove them if they have exploded
+            foreach (ProxMine element in TBIList.placedMines.Reverse<ProxMine>())
+            {
+                element.update();
+                if (element.IsDestroyed())
+                {
+                    TBIList.placedMines.Remove(element);
+                }
+            }
+
         }
 
         }

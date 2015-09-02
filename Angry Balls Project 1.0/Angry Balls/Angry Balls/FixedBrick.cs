@@ -7,14 +7,18 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
 
 namespace Angry_Balls
 {
     class FixedBrick : TBoxItem
     {
-        int brickHeight = 35;
-        int brickWidth = 69;
-        
+        int brickHeight = 45;
+        int brickWidth = 85;
+
+        //public Body brickBody = BodyFactory.CreateRectangle(Game1.world, )
+
         public FixedBrick(Point positionInput)
         {
             position = positionInput;
@@ -27,7 +31,7 @@ namespace Angry_Balls
         {
 
 
-            Point sourceTopLeft = new Point { X = 0, Y = 110 };
+            Point sourceTopLeft = new Point { X = 0, Y = 0 };
             Point sourceBottomRight = new Point { X = size.X, Y = size.Y };
             Rectangle sourceRectangle = new Rectangle(sourceTopLeft, sourceBottomRight);
 

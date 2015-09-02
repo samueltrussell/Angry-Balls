@@ -16,8 +16,11 @@ namespace Angry_Balls
         SpriteBatch spriteBatch;
 
         //Images
+        public static Texture2D ballImage;
         public static Texture2D bombImage;
+        public static Texture2D mineImage;
         public static Texture2D explodeImage;
+        public static Texture2D mineExplodeImage;
         public static Texture2D environmentBackground;
         public static Texture2D brickTextureAtlas;
         public static Texture2D toolBoxBackGround;
@@ -67,7 +70,7 @@ namespace Angry_Balls
             //initialize aspects of the physics engine world
             if (world == null)
             {
-                world = new World(Vector2.UnitY * 10000);
+                world = new World(Vector2.UnitY * 9.8f);
             }
             else
             {
@@ -76,11 +79,14 @@ namespace Angry_Balls
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            bombImage = Content.Load<Texture2D>("Bomb");
-            explodeImage = Content.Load<Texture2D>("Explosion");
-            brickTextureAtlas = Content.Load<Texture2D>("rp_small_bricks_sprite_1");
-            environmentBackground = Content.Load<Texture2D>("stars");
-            toolBoxBackGround = Content.Load<Texture2D>("toolbox");
+            ballImage = Content.Load<Texture2D>("rp_ball");
+            bombImage = Content.Load<Texture2D>("rp_bomb_1");
+            mineImage = Content.Load<Texture2D>("rp_mine_2");
+            explodeImage = Content.Load<Texture2D>("rp_bomb_explode_1");
+            mineExplodeImage = Content.Load<Texture2D>("rp_mine_explode_1");
+            brickTextureAtlas = Content.Load<Texture2D>("rp_bricks_sprite_1");
+            environmentBackground = Content.Load<Texture2D>("rp_background_1");
+            toolBoxBackGround = Content.Load<Texture2D>("rp_tool_bar");
             bombTimerFont = Content.Load<SpriteFont>("BombTimer");
 
             environment = new Environment();
@@ -114,8 +120,9 @@ namespace Angry_Balls
             else if (environment.gameState == Environment.GameState.run)
             {
                 environment.update();
+                Console.WriteLine(environment.angryBall.ballBody.Position.Y);
                 world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f, (1f / 30f)));
-                //Console.WriteLine(environment.map.TBIList.PlacedBomb[0].bombBody.LinearVelocity);
+                Console.WriteLine(environment.angryBall.ballBody.Position.Y);
             }
             else if (environment.gameState == Environment.GameState.pause)
 

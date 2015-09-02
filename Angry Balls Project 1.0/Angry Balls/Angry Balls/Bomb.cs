@@ -18,25 +18,25 @@ namespace Angry_Balls
         Point timerLocation;
         Point explodeLocation;
 
-        public Body bombBody = BodyFactory.CreateCircle(Game1.world, 5, 5);
+        //public Body bombBody = BodyFactory.CreateCircle(Game1.world, 5, 5);
 
         public Bomb(Point positionInput)
         {
             position = positionInput;
             image = Game1.bombImage;
-            size = new Point { X = 100, Y = 80 };
+            size = new Point { X = 78, Y = 80 };
             dragable = true;
             timer = 5.0;
-            timerLocation = new Point { X = position.X + size.X / 2 - 10, Y = position.Y - size.Y / 4 - 5 };
+            timerLocation = new Point { X = position.X + size.X / 2 + 10, Y = position.Y - 10 };
             explodeLocation = position;
 
             //initialize body physics parameters
 
-            bombBody.Position = new Vector2(100f, 100f);// position.Y;
-            bombBody.BodyType = BodyType.Dynamic;
-            bombBody.GravityScale = 1.0f;
-            bombBody.Restitution = 0.2f;
-            bombBody.Friction = 0.0f;
+            //bombBody.Position = new Vector2(100f, 100f);// position.Y;
+            //bombBody.BodyType = BodyType.Dynamic;
+            //bombBody.GravityScale = 1.0f;
+            //bombBody.Restitution = 0.2f;
+            //bombBody.Friction = 0.0f;
         }
 
         public void update()
@@ -46,8 +46,8 @@ namespace Angry_Balls
             if (placed)
             {
                 timer -= 0.025;
-                timerLocation.X = position.X + size.X / 2 - 10;
-                timerLocation.Y = position.Y - size.Y / 4 - 5;
+                timerLocation.X = position.X + size.X / 2 + 10;
+                timerLocation.Y = position.Y - 10;
             }
 
             if (timer <= 0) Explode();
@@ -56,14 +56,14 @@ namespace Angry_Balls
     
         public new void draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Game1.bombTimerFont, (int)timer + "", new Vector2(timerLocation.X, timerLocation.Y), Color.White);
+            //spriteBatch.DrawString(Game1.bombTimerFont, (int)timer + "", new Vector2(timerLocation.X, timerLocation.Y), Color.Teal);
 
             //Debug physics: print the body position on screen
             //spriteBatch.DrawString(Game1.bombTimerFont, "x = " + (int)bombBody.Position.X + "", new Vector2(timerLocation.X, timerLocation.Y + 75), Color.White);
 
             if (placed && timer > 0)
             {
-                spriteBatch.DrawString(Game1.bombTimerFont, (int)timer + "!", new Vector2(timerLocation.X, timerLocation.Y), Color.White);
+                spriteBatch.DrawString(Game1.bombTimerFont, (int)timer + "!", new Vector2(timerLocation.X, timerLocation.Y), Color.Red);
             }
             if(timer >= -2 && timer <= 0)
             {
@@ -75,13 +75,13 @@ namespace Angry_Balls
             }
         }
 
-        private new void Placed()
+        protected new void Placed()
         {
             placed = true;
-            bombBody.BodyType = BodyType.Dynamic;
+            //bombBody.BodyType = BodyType.Dynamic;
         }
 
-        private void Explode()
+        protected void Explode()
         {
             if(timer >= -.75)
             {

@@ -16,7 +16,7 @@ namespace Angry_Balls
         protected Point position; //[x,y] position in pixel space for tracking, physics, and rendering
         protected Point size; // [width, height] Size of the representatvie image in pixel space 
         protected Texture2D image;
-        protected bool dragable;
+        protected bool dragable = false;
         protected bool placed = false;
         protected bool destroyed = false;
 

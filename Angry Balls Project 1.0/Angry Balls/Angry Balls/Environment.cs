@@ -20,6 +20,9 @@ namespace Angry_Balls
         public TBoxItem selectedObject;
         protected bool justClicked;
         public ToolBox toolBox;
+        public FarseerBall angryBall;
+
+        protected Point ballStartPose = new Point { X = 10, Y = 10 };
 
         public enum GameState { run, pause, initialize };
         public GameState gameState;
@@ -33,6 +36,7 @@ namespace Angry_Balls
             justClicked = false;
             toolBox = new ToolBox();
             gameState = GameState.run;
+            angryBall = new FarseerBall(ballStartPose);
             
 
 
@@ -43,6 +47,9 @@ namespace Angry_Balls
             Point screenSize = new Point { X = Game1.graphics.PreferredBackBufferWidth, Y = Game1.graphics.PreferredBackBufferHeight };
             Rectangle screen = new Rectangle(Point.Zero, screenSize);
             spriteBatch.Draw(background, screen, Color.White);
+
+            //Draw the Ball
+            angryBall.Draw(spriteBatch);
 
             //Draw Fixed Bricks (draw Map)
             foreach (FixedBrick element in map.TBIList.FixedBrickList)
@@ -58,7 +65,12 @@ namespace Angry_Balls
             {
                 element.draw(spriteBatch);
             }
-            
+
+            foreach (ProxMine element in map.TBIList.placedMines)
+            {
+                element.draw(spriteBatch);
+            }
+
             //map.draw();
 
         }
