@@ -31,7 +31,7 @@ namespace Angry_Balls
             image = Game1.ballImage;
 
             //initialize body physics parameters
-            ballBody.Position = new Vector2(.75f, .75f);
+            ballBody.Position = inputPosition.ToVector2();
             ballBody.BodyType = BodyType.Dynamic;
             ballBody.GravityScale = .10f;
             ballBody.Restitution = 0.2f;
@@ -40,7 +40,9 @@ namespace Angry_Balls
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            position = UnitConverter.ToPixelSpace(ballBody.Position.ToPoint());
+            //position = UnitConverter.ToPixelSpace(ballBody.Position.ToPoint());
+
+            position = ballBody.Position.ToPoint();
 
             //Debug physics: print the body position on screen
             //spriteBatch.DrawString(Game1.bombTimerFont, "y = " + (int)ballBody.Position.Y, new Vector2(position.X, position.Y + size.Y/2), Color.White);
@@ -52,6 +54,5 @@ namespace Angry_Balls
 
             spriteBatch.Draw(image, new Rectangle(drawUpperLeft, size), Color.White);
         }
-
     }
 }
