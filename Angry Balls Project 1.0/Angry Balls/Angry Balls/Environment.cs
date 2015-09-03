@@ -8,6 +8,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+//Farseer
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
+
 namespace Angry_Balls
 {
     class Environment
@@ -22,7 +26,18 @@ namespace Angry_Balls
         public ToolBox toolBox;
         public static FarseerBall angryBall;    // Made static so I could reference from TBoxItem Class
 
-        protected Point ballStartPose = new Point { X = 10, Y = 10 };
+        //Border Bodies for the Physics Engine
+        public Body leftWall;
+        public Body rightWall;
+        public Body floor;
+        public Body ceiling;
+
+        Vector2 leftWallPosition = UnitConverter.toSimSpace(new Vector2(-5, 640));
+        Vector2 rightWallPosition = UnitConverter.toSimSpace(new Vector2(815, 640));
+        Vector2 ceilingPosition = UnitConverter.toSimSpace(new Vector2(480, -640));
+        Vector2 floorPosition = UnitConverter.toSimSpace(new Vector2(480, 1360));
+
+        protected Vector2 ballStartPose = new Vector2(150, 150);
 
         public enum GameState { run, pause, initialize };
         public GameState gameState;
@@ -37,7 +52,16 @@ namespace Angry_Balls
             toolBox = new ToolBox();
             gameState = GameState.run;
             angryBall = new FarseerBall(ballStartPose);
-            
+
+            //Physics Bodies for Walls
+            leftWall = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(10), UnitConverter.toSimSpace(2560), 1.0f, leftWallPosition);
+            leftWall.BodyType = BodyType.Static;
+            rightWall = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(10), UnitConverter.toSimSpace(2560), 1.0f, rightWallPosition);
+            rightWall.BodyType = BodyType.Static;
+            ceiling = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(960), UnitConverter.toSimSpace(10), 1.0f, ceilingPosition);
+            ceiling.BodyType = BodyType.Static;
+            floor = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(960), UnitConverter.toSimSpace(10), 1.0f, floorPosition);
+            floor.BodyType = BodyType.Static;
 
 
         }
@@ -104,6 +128,11 @@ namespace Angry_Balls
             else if(mouseState.LeftButton != ButtonState.Pressed && justClicked == true)
             {
                 justClicked = false;
+                if(selectedObject != null)
+                {
+                    selectedObject.Placed();
+                }
+                
             }
 
             //Update objects on the field, if necessary

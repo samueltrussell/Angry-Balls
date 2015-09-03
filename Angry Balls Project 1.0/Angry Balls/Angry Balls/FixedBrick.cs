@@ -14,43 +14,44 @@ namespace Angry_Balls
 {
     class FixedBrick : TBoxItem
     {
-        int brickHeight = 45;
-        int brickWidth = 85;
+        int brickHeight = 45; //Px
+        int brickWidth = 85; //Px
 
         Body brickBody;
 
         //public Body brickBody = BodyFactory.CreateRectangle(Game1.world, )
 
-        public FixedBrick(Point positionInput)
+        public FixedBrick(Vector2 positionInput)
         {
             position = positionInput;
             image = Game1.brickTextureAtlas;
-            size = new Point { X = brickWidth, Y = brickHeight};
+            size = new Vector2 { X = brickWidth, Y = brickHeight};
             dragable = false;
-            brickBody = BodyFactory.CreateBody(Game1.world);
+            brickBody = BodyFactory.CreateRectangle(Game1.world,UnitConverter.toSimSpace(brickWidth), UnitConverter.toSimSpace(brickHeight), 1.0f, UnitConverter.toSimSpace(positionInput));
             brickBody.BodyType = BodyType.Static;
-            brickBody.IgnoreGravity = true;
-            brickBody.Restitution = 2.0f;
+            brickBody.Friction = 0.5f;
         }
 
         new public void draw(SpriteBatch spriteBatch)
         {
 
-            Point sourceTopLeft = new Point { X = 0, Y = 0 };
-            Point sourceBottomRight = new Point { X = size.X, Y = size.Y };
-            Rectangle sourceRectangle = new Rectangle(sourceTopLeft, sourceBottomRight);
+            Vector2 sourceTopLeft = new Vector2 ( 0, 0 );
+            Vector2 sourceBottomRight = new Vector2 ( size.X, size.Y );
+            Rectangle sourceRectangle = new Rectangle(sourceTopLeft.ToPoint(), sourceBottomRight.ToPoint());
 
-            spriteBatch.Draw(image, new Rectangle(position, size), sourceRectangle, Color.White);
+            position.X = UnitConverter.toPixelSpace(brickBody.Position.X) - size.X/2;
+            position.Y = UnitConverter.toPixelSpace(brickBody.Position.Y) - size.Y/2;
+            spriteBatch.Draw(image, new Rectangle(position.ToPoint(), size.ToPoint()), sourceRectangle, Color.White);
         }
 
         new public void PhysicsCollisionActions()
         {
-            Vector2 force = new Vector2(Environment.angryBall.ballBody.Position.X * 2.0f, -Environment.angryBall.ballBody.Position.Y);
+            //Vector2 force = new Vector2(Environment.angryBall.ballBody.Position.X * 2.0f, -Environment.angryBall.ballBody.Position.Y);
 
-            if(Environment.angryBall.ballBody.Position.Y >= position.Y)
-            {
-                Environment.angryBall.ballBody.ApplyForce(force);
-            }
+            //if(Environment.angryBall.ballBody.Position.Y >= position.Y)
+            //{
+            //    Environment.angryBall.ballBody.ApplyForce(force);
+            //}
         }
     }
 }

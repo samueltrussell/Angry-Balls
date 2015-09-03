@@ -14,21 +14,38 @@ namespace Angry_Balls
 {
     class UnitConverter
     {
-        private static Point resultPoint;
-        private static int pixelsPerMeter = 750;
+        private static Vector2 resultVector;
+        private static float pixelsPerMeter = 100f;
+        private static float MetersPerPixel = 1f / pixelsPerMeter;
         
 
-        public static Point ToPixelSpace(Point point)
+        public static Vector2 toPixelSpace(Vector2 point)
         {
-            resultPoint.X = point.X * pixelsPerMeter;
-            resultPoint.Y = point.Y * pixelsPerMeter;
+            resultVector.X = point.X * (int)pixelsPerMeter;
+            resultVector.Y = point.Y * (int)pixelsPerMeter;
 
-            return resultPoint;        
+            return resultVector;        
         }
 
-        public static float ToPixelSpace(float number)
+        public static int toPixelSpace(float value)
         {
-            return number * pixelsPerMeter;
+            float result = value * pixelsPerMeter;
+            return (int) result;
         }
+
+        public static Vector2 toSimSpace(Vector2 point)
+        {
+            resultVector.X = point.X * MetersPerPixel;
+            resultVector.Y = point.Y * MetersPerPixel;
+
+            return resultVector;
+        }
+
+        public static float toSimSpace(int value)
+        {
+            float result = value * MetersPerPixel;
+            return result;
+        }
+
     }
 }

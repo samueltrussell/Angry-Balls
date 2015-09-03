@@ -19,25 +19,25 @@ namespace Angry_Balls
         public BombPlaced added;
 
         //ToolBox Start Poses
-        Point bombStart = new Point { X = 845, Y = 65 };
-        Point mineStart = new Point { X = 845, Y = 175 };
+        Vector2 bombStart = new Vector2 ( 845, 65 );
+        Vector2 mineStart = new Vector2 ( 845, 175 );
 
         //Positions will change according to levels
-        Point startPose4 = new Point { X = 0, Y = 400 };
-        Point startPose5 = new Point { X = 85, Y = 400 };
-        Point startPose6 = new Point { X = 170, Y = 400 };
+        Vector2 startPose4 = new Vector2 ( 0,  400 );
+        Vector2 startPose5 = new Vector2 ( 85, 450 );
+        Vector2 startPose6 = new Vector2 ( 170, 500 );
 
-        Point startPose7 = new Point { X = 255, Y = 400 };
-        Point startPose8 = new Point { X = 340, Y = 400 };
-        Point startPose9 = new Point { X = 425, Y = 400 };
+        Vector2 startPose7 = new Vector2 ( 255, 550 );
+        Vector2 startPose8 = new Vector2 ( 340, 600 );
+        Vector2 startPose9 = new Vector2 ( 425, 650 );
 
-        Point startPose10 = new Point { X = 510, Y = 400 };
-        Point startPose11 = new Point { X = 595, Y = 400 };
-        Point startPose12 = new Point { X = 680, Y = 400 };
+        Vector2 startPose10 = new Vector2 ( 510, 700 );
+        Vector2 startPose11 = new Vector2 ( 595, 700 );
+        Vector2 startPose12 = new Vector2 ( 680, 700 );
 
-        Point startPose13 = new Point { X = 765, Y = 400 };
-        Point startPose14 = new Point { X = 750, Y = 400 };
-        Point startPose15 = new Point { X = 825, Y = 400 };
+        Vector2 startPose13 = new Vector2 ( 765, 850 );
+        Vector2 startPose14 = new Vector2 ( 750, 900 );
+        Vector2 startPose15 = new Vector2 ( 825, 950 );
 
 
         //Initialisation for new lists must also be done here in the constructor

@@ -15,19 +15,20 @@ namespace Angry_Balls
     class Bomb : TBoxItem
     {
         double timer;
-        Point timerLocation;
-        Point explodeLocation;
+        Vector2 timerLocation;
+        Vector2 explodeLocation;
+        private Body bombBody;
 
         //public Body bombBody = BodyFactory.CreateCircle(Game1.world, 5, 5);
 
-        public Bomb(Point positionInput)
+        public Bomb(Vector2 positionInput)
         {
             position = positionInput;
             image = Game1.bombImage;
-            size = new Point { X = 78, Y = 80 };
+            size = new Vector2 ( 78, 80 );
             dragable = true;
             timer = 5.0;
-            timerLocation = new Point { X = position.X + size.X / 2 + 10, Y = position.Y - 10 };
+            timerLocation = new Vector2 ( position.X + size.X / 2 + 10,  position.Y - 10 );
             explodeLocation = position;
 
             //initialize body physics parameters
@@ -67,11 +68,11 @@ namespace Angry_Balls
             }
             if(timer >= -2 && timer <= 0)
             {
-                spriteBatch.Draw(image, new Rectangle(explodeLocation, size), Color.White);
+                spriteBatch.Draw(image, new Rectangle(explodeLocation.ToPoint(), size.ToPoint()), Color.White);
             }
             else
             {
-                spriteBatch.Draw(image, new Rectangle(position, size), Color.White);
+                spriteBatch.Draw(image, new Rectangle(position.ToPoint(), size.ToPoint()), Color.White);
             }
         }
 
@@ -98,6 +99,11 @@ namespace Angry_Balls
                 destroyed = true;
             }
 
+        }
+
+        public void RemoveBody()
+        {
+            Game1.world.RemoveBody(bombBody);
         }
 
     }

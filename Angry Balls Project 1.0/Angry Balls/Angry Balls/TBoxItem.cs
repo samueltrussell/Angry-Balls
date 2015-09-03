@@ -13,8 +13,8 @@ namespace Angry_Balls
 
     class TBoxItem
     {
-        protected Point position; //[x,y] position in pixel space for tracking, physics, and rendering
-        protected Point size; // [width, height] Size of the representatvie image in pixel space 
+        protected Vector2 position; //[x,y] position in pixel space for tracking, physics, and rendering
+        protected Vector2 size; // [width, height] Size of the representatvie image in pixel space 
         protected Texture2D image;
         protected bool dragable = false;
         protected bool placed = false;
@@ -30,7 +30,7 @@ namespace Angry_Balls
         //draw function adds the object to the parameter spritebatch
         public void draw(SpriteBatch spriteBatch) 
         {
-            spriteBatch.Draw(image, new Rectangle(position,size), Color.White);
+            spriteBatch.Draw(image, new Rectangle(position.ToPoint(),size.ToPoint()), Color.White);
         }
 
         public void MapCollisionActions()
@@ -44,7 +44,7 @@ namespace Angry_Balls
         }
 
         //passed a new position vector, updates position
-        public void PostionUpdate(Point newPosition) 
+        public void PostionUpdate(Vector2 newPosition) 
         {
             newPosition.X -= size.X / 2;
             newPosition.Y -= size.Y / 2;
@@ -58,7 +58,8 @@ namespace Angry_Balls
         {
             if (mouseState.LeftButton == ButtonState.Pressed &&
                 mouseState.X > position.X && mouseState.X < position.X + size.X &&
-                mouseState.Y > position.Y && mouseState.Y < position.Y + size.Y)
+                mouseState.Y > position.Y && mouseState.Y < position.Y + size.Y &&
+                isDragable())
             {
                 return true;
             }
@@ -74,9 +75,9 @@ namespace Angry_Balls
             return dragable;
         }
 
-        public void Placed()
+        public virtual void Placed()
         {
-            placed = true;
+
         }
 
         public bool IsDestroyed()
