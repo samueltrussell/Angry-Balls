@@ -19,8 +19,8 @@ namespace Angry_Balls
         public BombPlaced added;
 
         //ToolBox Start Poses
-        Vector2 bombStart = new Vector2 ( 845, 65 );
-        Vector2 mineStart = new Vector2 ( 845, 175 );
+        Vector2 bombStart = new Vector2 ( 885, 100 );
+        Vector2 mineStart = new Vector2 ( 885, 210 );
 
         //Positions will change according to levels
         Vector2 startPose4 = new Vector2 ( 0,  400 );
@@ -61,10 +61,10 @@ namespace Angry_Balls
             //FixedBrickList.Add(new FixedBrick(startPose15));
 
             //Add Bombs
-            for(int i = 0; i < 3; i ++)
+            for(int i = 0; i < 10; i ++)
                 PlacedBomb.Add(new Bomb(bombStart));
             //Add Mines
-            for(int i = 0; i < 3; i++)
+            for(int i = 0; i < 10; i++)
                 placedMines.Add(new ProxMine(mineStart));
 
 

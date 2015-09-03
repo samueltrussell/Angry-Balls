@@ -13,13 +13,13 @@ namespace Angry_Balls
 
     class TBoxItem
     {
+        protected Texture2D image;
         protected Vector2 position; //[x,y] position in pixel space for tracking, physics, and rendering
         protected Vector2 size; // [width, height] Size of the representatvie image in pixel space 
-        protected Texture2D image;
+        protected Vector2 imageOrigin;
         protected bool dragable = false;
         protected bool placed = false;
         protected bool destroyed = false;
-
 
         //Base class constructor, SHOULD be overloaded by each derived TBI
         public TBoxItem()
@@ -27,29 +27,19 @@ namespace Angry_Balls
 
         }
 
-        //draw function adds the object to the parameter spritebatch
-        public void draw(SpriteBatch spriteBatch) 
+        //default draw function draws the base image, centered at the current position
+        //call default Draw from a Draw function in each derived class
+        public void DefaultDraw(SpriteBatch spriteBatch) 
         {
-            spriteBatch.Draw(image, new Rectangle(position.ToPoint(),size.ToPoint()), Color.White);
-        }
-
-        public void MapCollisionActions()
-        {
-
-        }
-
-        public void PhysicsCollisionActions()
-        {
-
+            Vector2 topLeft = new Vector2 (position.X - image.Width / 2, position.Y - image.Height / 2);
+            size = new Vector2 (image.Width, image.Height);
+            spriteBatch.Draw(image, new Rectangle(topLeft.ToPoint(),size.ToPoint()), Color.White);
         }
 
         //passed a new position vector, updates position
         public void PostionUpdate(Vector2 newPosition) 
         {
-            newPosition.X -= size.X / 2;
-            newPosition.Y -= size.Y / 2;
             position = newPosition;
-
         }
 
         //function to handle drag and drop position updates, send it a MouseState... it'll handle the rest
@@ -57,8 +47,8 @@ namespace Angry_Balls
         public bool isClicked(MouseState mouseState) 
         {
             if (mouseState.LeftButton == ButtonState.Pressed &&
-                mouseState.X > position.X && mouseState.X < position.X + size.X &&
-                mouseState.Y > position.Y && mouseState.Y < position.Y + size.Y &&
+                mouseState.X > position.X - image.Width / 2 && mouseState.X < position.X + image.Width / 2 &&
+                mouseState.Y > position.Y - image.Height / 2 && mouseState.Y < position.Y + image.Height / 2 &&
                 isDragable())
             {
                 return true;

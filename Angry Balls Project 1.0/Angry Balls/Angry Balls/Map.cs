@@ -74,7 +74,6 @@ namespace Angry_Balls
                 element.update();
                 if (element.IsDestroyed())
                 {
-                    element.RemoveBody();
                     TBIList.PlacedBomb.Remove(element);
                 }
             }
@@ -85,7 +84,6 @@ namespace Angry_Balls
                 if (element.IsDestroyed())
                 {
                     TBIList.placedMines.Remove(element);
-                    element.RemoveBody();
                 }
             }
 

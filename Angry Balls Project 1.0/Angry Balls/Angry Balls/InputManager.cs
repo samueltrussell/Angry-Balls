@@ -34,8 +34,6 @@ namespace Angry_Balls
             {
                 Vector2 newPosition = new Vector2 (mouseState.X, mouseState.Y );
                 item.PostionUpdate(newPosition);
-
-                //item.Placed();
             }
         }
 

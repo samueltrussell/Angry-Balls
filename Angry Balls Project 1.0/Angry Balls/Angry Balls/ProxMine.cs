@@ -24,7 +24,7 @@ namespace Angry_Balls
         private float explosionForce = 1500f;
         private int radius = 78 / 2;
         private Vector2 mineBodyOrigin;
-        public Body mineBody;
+        private Body mineBody;
 
         public ProxMine(Vector2 positionInput)
         {
@@ -42,25 +42,20 @@ namespace Angry_Balls
             if (exploded) Explode();
         }
 
-        public new void draw(SpriteBatch spriteBatch)
+        public void draw(SpriteBatch spriteBatch)
         {
-            //Debug physics: print the body position on screen
-            //spriteBatch.DrawString(Game1.bombTimerFont, "x = " + (int)bombBody.Position.X + "", new Vector2(timerLocation.X, timerLocation.Y + 75), Color.White);
-            if (placed == true)
+            if (placed)//On Map
             {
                 position = UnitConverter.toPixelSpace(mineBody.Position);
-                //position.X -= size.X / 2;
-                //position.Y -= size.Y / 2;
                 spriteBatch.Draw(image, position, null, Color.White, mineBody.Rotation, mineBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
-            else if (timer >= -2 && timer < 0)
+            else if (timer >= -2 && exploded)//exploding
             {
                 spriteBatch.Draw(image, new Rectangle(explodeLocation.ToPoint(), size.ToPoint()), Color.White);
             }
-            else
+            else //Toolbox
             {
-                spriteBatch.Draw(image, position, null, Color.White);
-                //new Rectangle(position.ToPoint(), size.ToPoint())
+                DefaultDraw(spriteBatch);
             }
         }
 
@@ -68,14 +63,14 @@ namespace Angry_Balls
         {
             placed = true;
             dragable = false;
-            Vector2 initPosition = UnitConverter.toSimSpace(new Vector2(position.X + size.X/2, position.Y + size.Y/2));
+            Vector2 initPosition = UnitConverter.toSimSpace(position);
 
             //initialize body physics parameters
             mineBody = BodyFactory.CreateCircle(Game1.world, UnitConverter.toSimSpace(radius), 1.0f, initPosition);
             mineBody.OnCollision += MineBody_OnCollision;
             mineBody.BodyType = BodyType.Dynamic;
             mineBody.GravityScale = 1.0f;
-            mineBody.Restitution = .0f;
+            mineBody.Restitution = 0.0f;
             mineBody.Friction = 0.5f;
             mineBody.AngularDamping = 8.5f;
             mineBodyOrigin = new Vector2(image.Width / 2, image.Height / 2);
@@ -98,7 +93,7 @@ namespace Angry_Balls
 
         protected void Explode()
         {
-            exploded = true;
+            //exploded = true;
             if (timer >= -.75)
             {
                 explodeLocation = position;
@@ -108,18 +103,17 @@ namespace Angry_Balls
                 explodeLocation.X += xShift;
                 explodeLocation.Y += yShift;
                 timer -= .025f;
-
+                if (!exploded)
+                {
+                    Game1.world.RemoveBody(mineBody);
+                    exploded = true;
+                }
             }
             else
             {
                 destroyed = true;
             }
 
-        }
-
-        public void RemoveBody()
-        {
-            Game1.world.RemoveBody(mineBody);
         }
 
     }

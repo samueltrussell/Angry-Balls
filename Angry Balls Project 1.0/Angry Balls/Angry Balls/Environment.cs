@@ -104,11 +104,6 @@ namespace Angry_Balls
             //Handle Mouse Input for drag and drop
             MouseState mouseState = Mouse.GetState();
 
-            foreach (FixedBrick brick in map.TBIList.FixedBrickList)
-            {
-                brick.PhysicsCollisionActions();
-            }
-
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
                 if (justClicked == false)
@@ -137,17 +132,6 @@ namespace Angry_Balls
 
             //Update objects on the field, if necessary
             map.update();
-
-
-            //foreach (Bomb element in bombs)
-            //{
-            //    element.isClicked(mouseState);
-            //}
-
-            //foreach (FixedBrick element in fixedBricks)
-            //{
-            //    element.isClicked(mouseState);
-            //}
         }
 
         public void initialize()

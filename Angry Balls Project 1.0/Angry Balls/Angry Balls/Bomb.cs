@@ -14,72 +14,79 @@ namespace Angry_Balls
 {
     class Bomb : TBoxItem
     {
-        double timer;
-        Vector2 timerLocation;
-        Vector2 explodeLocation;
+        private double timer;
+        private Texture2D explodeImage;
+        private Vector2 timerLocation;
+        private Vector2 explodeLocation;
+        private Vector2 bombBodyOrigin;
         private Body bombBody;
-
-        //public Body bombBody = BodyFactory.CreateCircle(Game1.world, 5, 5);
+        private bool exploded = false;
+        private int radius = 78 / 2;
 
         public Bomb(Vector2 positionInput)
         {
             position = positionInput;
             image = Game1.bombImage;
+            imageOrigin = new Vector2 (position.X - image.Width / 2, position.Y - image.Height / 2);
             size = new Vector2 ( 78, 80 );
             dragable = true;
             timer = 5.0;
             timerLocation = new Vector2 ( position.X + size.X / 2 + 10,  position.Y - 10 );
             explodeLocation = position;
+            explodeImage = Game1.explodeImage;
 
-            //initialize body physics parameters
-
-            //bombBody.Position = new Vector2(100f, 100f);// position.Y;
-            //bombBody.BodyType = BodyType.Dynamic;
-            //bombBody.GravityScale = 1.0f;
-            //bombBody.Restitution = 0.2f;
-            //bombBody.Friction = 0.0f;
         }
 
         public void update()
         {
-            //position = bombBody.Position.ToPoint();
-
+            
             if (placed)
             {
                 timer -= 0.025;
-                timerLocation.X = position.X + size.X / 2 + 10;
-                timerLocation.Y = position.Y - 10;
             }
 
             if (timer <= 0) Explode();
 
         }
     
-        public new void draw(SpriteBatch spriteBatch)
+        public void draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.DrawString(Game1.bombTimerFont, (int)timer + "", new Vector2(timerLocation.X, timerLocation.Y), Color.Teal);
+            timerLocation.X = position.X + size.X / 2 + 10;
+            timerLocation.Y = position.Y - 10;
 
-            //Debug physics: print the body position on screen
-            //spriteBatch.DrawString(Game1.bombTimerFont, "x = " + (int)bombBody.Position.X + "", new Vector2(timerLocation.X, timerLocation.Y + 75), Color.White);
+            imageOrigin.X = position.X - image.Width / 2;
+            imageOrigin.Y = position.Y - image.Height / 2;
 
-            if (placed && timer > 0)
+            if (placed && timer > 0)//during countdown
             {
                 spriteBatch.DrawString(Game1.bombTimerFont, (int)timer + "!", new Vector2(timerLocation.X, timerLocation.Y), Color.Red);
+                position = UnitConverter.toPixelSpace(bombBody.Position);
+                spriteBatch.Draw(image, position, null, Color.White, bombBody.Rotation, bombBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
-            if(timer >= -2 && timer <= 0)
+            else if(placed && timer >= -2 && timer <= 0)//while exploding
             {
-                spriteBatch.Draw(image, new Rectangle(explodeLocation.ToPoint(), size.ToPoint()), Color.White);
+                spriteBatch.Draw(explodeImage, explodeLocation, null, Color.White, bombBody.Rotation, bombBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
-            else
+            else //Toolbox & While Dragging
             {
-                spriteBatch.Draw(image, new Rectangle(position.ToPoint(), size.ToPoint()), Color.White);
+                DefaultDraw(spriteBatch);
             }
         }
 
-        protected new void Placed()
+        public override void Placed()
         {
             placed = true;
-            //bombBody.BodyType = BodyType.Dynamic;
+            dragable = false;
+            Vector2 initPosition = UnitConverter.toSimSpace(position);
+
+            //initialize body physics parameters
+            bombBody = BodyFactory.CreateCircle(Game1.world, UnitConverter.toSimSpace(radius), 1.0f, initPosition);
+            bombBody.BodyType = BodyType.Dynamic;
+            bombBody.GravityScale = 1.0f;
+            bombBody.Restitution = 0.05f;
+            bombBody.AngularDamping = 20;
+            bombBody.Friction = 0.5f;
+            bombBodyOrigin = new Vector2(image.Width / 2, image.Height / 2);
         }
 
         protected void Explode()
@@ -87,11 +94,16 @@ namespace Angry_Balls
             if(timer >= -.75)
             {
                 explodeLocation = position;
-                image = Game1.explodeImage;
                 int xShift = Game1.random.Next(6) - 3;
                 int yShift = Game1.random.Next(6) - 3;
                 explodeLocation.X += xShift;
                 explodeLocation.Y += yShift;
+
+                if (!exploded)
+                {
+                    Game1.world.RemoveBody(bombBody);
+                    exploded = true;
+                }
 
             }
             else
@@ -101,10 +113,8 @@ namespace Angry_Balls
 
         }
 
-        public void RemoveBody()
-        {
-            Game1.world.RemoveBody(bombBody);
-        }
+
+
 
     }
 }

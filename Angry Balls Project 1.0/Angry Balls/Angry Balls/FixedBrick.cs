@@ -14,12 +14,11 @@ namespace Angry_Balls
 {
     class FixedBrick : TBoxItem
     {
-        int brickHeight = 45; //Px
-        int brickWidth = 85; //Px
+        protected int brickHeight = 45; //Px
+        protected int brickWidth = 85; //Px
 
         Body brickBody;
 
-        //public Body brickBody = BodyFactory.CreateRectangle(Game1.world, )
 
         public FixedBrick(Vector2 positionInput)
         {
@@ -42,16 +41,6 @@ namespace Angry_Balls
             position.X = UnitConverter.toPixelSpace(brickBody.Position.X) - size.X/2;
             position.Y = UnitConverter.toPixelSpace(brickBody.Position.Y) - size.Y/2;
             spriteBatch.Draw(image, new Rectangle(position.ToPoint(), size.ToPoint()), sourceRectangle, Color.White);
-        }
-
-        new public void PhysicsCollisionActions()
-        {
-            //Vector2 force = new Vector2(Environment.angryBall.ballBody.Position.X * 2.0f, -Environment.angryBall.ballBody.Position.Y);
-
-            //if(Environment.angryBall.ballBody.Position.Y >= position.Y)
-            //{
-            //    Environment.angryBall.ballBody.ApplyForce(force);
-            //}
         }
     }
 }
