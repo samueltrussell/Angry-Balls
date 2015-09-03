@@ -45,8 +45,12 @@ namespace Angry_Balls
 
         new public void PhysicsCollisionActions()
         {
-            // Collision Detection between ball and Brick 
-            // ...To Be Continued...
+            Vector2 force = new Vector2(Environment.angryBall.ballBody.Position.X * 2.0f, -Environment.angryBall.ballBody.Position.Y);
+
+            if(Environment.angryBall.ballBody.Position.Y >= position.Y)
+            {
+                Environment.angryBall.ballBody.ApplyForce(force);
+            }
         }
     }
 }

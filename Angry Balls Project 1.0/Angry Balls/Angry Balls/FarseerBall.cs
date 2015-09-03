@@ -17,12 +17,14 @@ namespace Angry_Balls
         public const float METER_TO_PIXEL = 100.0f;
         public const float PIXEL_TO_METER = 1.0f / METER_TO_PIXEL;
 
+        public const float RADIUS = .75f;
+
         protected Point position;
         protected Texture2D image;
         protected Point size = new Point { X = 75, Y = 75 };
 
         //Ball body: .1 m in diameter
-        public Body ballBody = BodyFactory.CreateCircle(Game1.world, 0.1f, 5);
+        public Body ballBody = BodyFactory.CreateCircle(Game1.world, RADIUS, 5);
 
         //Draw references
         Point drawUpperLeft;
@@ -42,7 +44,7 @@ namespace Angry_Balls
             //initialize body physics parameters
             ballBody.Position = inputPosition.ToVector2();
             ballBody.BodyType = BodyType.Dynamic;
-            ballBody.GravityScale = .10f;
+            ballBody.GravityScale = 1.0f;
             ballBody.Restitution = 0.2f;
             ballBody.Friction = 0.0f;
         }

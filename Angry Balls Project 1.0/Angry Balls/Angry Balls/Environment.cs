@@ -82,7 +82,7 @@ namespace Angry_Balls
 
             foreach (FixedBrick brick in map.TBIList.FixedBrickList)
             {
-                brick.Update();
+                brick.PhysicsCollisionActions();
             }
 
             if (mouseState.LeftButton == ButtonState.Pressed)
