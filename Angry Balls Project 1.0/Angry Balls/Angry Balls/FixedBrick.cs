@@ -17,6 +17,8 @@ namespace Angry_Balls
         int brickHeight = 45;
         int brickWidth = 85;
 
+        Body brickBody;
+
         //public Body brickBody = BodyFactory.CreateRectangle(Game1.world, )
 
         public FixedBrick(Point positionInput)
@@ -25,17 +27,26 @@ namespace Angry_Balls
             image = Game1.brickTextureAtlas;
             size = new Point { X = brickWidth, Y = brickHeight};
             dragable = false;
+            brickBody = BodyFactory.CreateBody(Game1.world);
+            brickBody.BodyType = BodyType.Static;
+            brickBody.IgnoreGravity = true;
+            brickBody.Restitution = 2.0f;
         }
 
         new public void draw(SpriteBatch spriteBatch)
         {
-
 
             Point sourceTopLeft = new Point { X = 0, Y = 0 };
             Point sourceBottomRight = new Point { X = size.X, Y = size.Y };
             Rectangle sourceRectangle = new Rectangle(sourceTopLeft, sourceBottomRight);
 
             spriteBatch.Draw(image, new Rectangle(position, size), sourceRectangle, Color.White);
+        }
+
+        new public void PhysicsCollisionActions()
+        {
+            // Collision Detection between ball and Brick 
+            // ...To Be Continued...
         }
     }
 }

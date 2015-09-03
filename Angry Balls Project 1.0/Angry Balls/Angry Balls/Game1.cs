@@ -120,9 +120,9 @@ namespace Angry_Balls
             else if (environment.gameState == Environment.GameState.run)
             {
                 environment.update();
-                Console.WriteLine(environment.angryBall.ballBody.Position.Y);
+                Console.WriteLine(Environment.angryBall.ballBody.Position.Y);
                 world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f, (1f / 30f)));
-                Console.WriteLine(environment.angryBall.ballBody.Position.Y);
+                Console.WriteLine(Environment.angryBall.ballBody.Position.Y);
             }
             else if (environment.gameState == Environment.GameState.pause)
 

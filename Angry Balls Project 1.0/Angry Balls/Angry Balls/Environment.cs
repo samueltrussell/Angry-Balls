@@ -20,7 +20,7 @@ namespace Angry_Balls
         public TBoxItem selectedObject;
         protected bool justClicked;
         public ToolBox toolBox;
-        public FarseerBall angryBall;
+        public static FarseerBall angryBall;    // Made static so I could reference from TBoxItem Class
 
         protected Point ballStartPose = new Point { X = 10, Y = 10 };
 
@@ -80,6 +80,11 @@ namespace Angry_Balls
             //Handle Mouse Input for drag and drop
             MouseState mouseState = Mouse.GetState();
 
+            foreach (FixedBrick brick in map.TBIList.FixedBrickList)
+            {
+                brick.Update();
+            }
+
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
                 if (justClicked == false)
@@ -95,6 +100,7 @@ namespace Angry_Balls
                 }
                 
             }
+
             else if(mouseState.LeftButton != ButtonState.Pressed && justClicked == true)
             {
                 justClicked = false;

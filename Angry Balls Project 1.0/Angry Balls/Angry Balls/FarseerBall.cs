@@ -14,16 +14,25 @@ namespace Angry_Balls
 {
     class FarseerBall
     {
+        public const float METER_TO_PIXEL = 100.0f;
+        public const float PIXEL_TO_METER = 1.0f / METER_TO_PIXEL;
+
         protected Point position;
         protected Texture2D image;
         protected Point size = new Point { X = 75, Y = 75 };
-        
+
         //Ball body: .1 m in diameter
         public Body ballBody = BodyFactory.CreateCircle(Game1.world, 0.1f, 5);
 
         //Draw references
         Point drawUpperLeft;
         Point drawLowerRight;
+
+        public Vector2 metricPosition
+        {
+            get { return ballBody.Position * METER_TO_PIXEL; }
+            set { ballBody.Position = ballBody.Position * PIXEL_TO_METER; }
+        }
 
         public FarseerBall(Point inputPosition)
         {
