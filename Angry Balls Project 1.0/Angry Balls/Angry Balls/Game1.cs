@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+
 using FarseerPhysics.Dynamics;
 using System;
-
 
 namespace Angry_Balls
 {
@@ -25,6 +26,11 @@ namespace Angry_Balls
         public static Texture2D brickTextureAtlas;
         public static Texture2D toolBoxBackGround;
         public static SpriteFont bombTimerFont;
+
+        //Audio
+        private SoundEffect mineExplosion;
+
+        public static SoundEffectInstance mineInstance;
 
         //Game environment
         Environment environment;
@@ -76,6 +82,11 @@ namespace Angry_Balls
             {
                 world.Clear();
             }
+
+            // Load Audio
+            mineExplosion = Content.Load<SoundEffect>("Mine");
+
+            mineInstance = mineExplosion.CreateInstance();
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);

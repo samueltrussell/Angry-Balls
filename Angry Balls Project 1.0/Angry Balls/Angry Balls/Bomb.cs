@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework.Audio;
 
 //using directives for monogame featureset
 using Microsoft.Xna.Framework;
@@ -19,6 +20,7 @@ namespace Angry_Balls
         private Vector2 timerLocation;
         private Vector2 explodeLocation;
         private Vector2 bombBodyOrigin;
+        private Vector2 explosionForce = new Vector2(500, 500);
         private Body bombBody;
         private bool exploded = false;
         private int radius = 78 / 2;
@@ -39,13 +41,16 @@ namespace Angry_Balls
 
         public void update()
         {
-            
             if (placed)
             {
                 timer -= 0.025;
             }
 
-            if (timer <= 0) Explode();
+            if (timer <= 0)
+            {
+                Game1.mineInstance.Play();
+                Explode();
+            }
 
         }
     
@@ -73,6 +78,21 @@ namespace Angry_Balls
             }
         }
 
+        private bool BombBody_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        {
+            if (fixtureB.Body.BodyType == BodyType.Dynamic)
+            {
+                Explode();
+                Vector2 force = fixtureA.Body.Position - fixtureB.Body.Position;
+                force *= explosionForce;
+                fixtureA.Body.ApplyForce(force);
+                return true;
+            }
+            else return true;
+            //throw new NotImplementedException();
+        }
+
+
         public override void Placed()
         {
             placed = true;
@@ -81,6 +101,7 @@ namespace Angry_Balls
 
             //initialize body physics parameters
             bombBody = BodyFactory.CreateCircle(Game1.world, UnitConverter.toSimSpace(radius), 1.0f, initPosition);
+
             bombBody.BodyType = BodyType.Dynamic;
             bombBody.GravityScale = 1.0f;
             bombBody.Restitution = 0.05f;
@@ -99,12 +120,15 @@ namespace Angry_Balls
                 explodeLocation.X += xShift;
                 explodeLocation.Y += yShift;
 
+                Environment.angryBall.ballBody.ApplyForce(UnitConverter.toSimSpace(-explosionForce));
+
+                bombBody.ApplyAngularImpulse(.20f);
+
                 if (!exploded)
                 {
                     Game1.world.RemoveBody(bombBody);
                     exploded = true;
                 }
-
             }
             else
             {

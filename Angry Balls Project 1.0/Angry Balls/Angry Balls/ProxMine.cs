@@ -7,11 +7,13 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Collision;
 using FarseerPhysics.Common;
-using FarseerPhysics.Controllers;   
+using FarseerPhysics.Controllers;
 
 
 namespace Angry_Balls
@@ -39,7 +41,11 @@ namespace Angry_Balls
 
         public void update()
         {
-            if (exploded) Explode();
+            if (exploded)
+            {
+                Game1.mineInstance.Play();
+                Explode();
+            }
         }
 
         public void draw(SpriteBatch spriteBatch)

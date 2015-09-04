@@ -217,3 +217,9 @@
 /processorParam:TextureFormat=Color
 /build:rp_mine_explode_1.png
 
+#begin Mine.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Mine.wav
+
