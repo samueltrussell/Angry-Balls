@@ -115,7 +115,6 @@ namespace Angry_Balls
 
                 if (selectedObject != null)
                 {
-                    selectedObject.color = Color.Red;
                     Input.Update(selectedObject);
                 }               
             }

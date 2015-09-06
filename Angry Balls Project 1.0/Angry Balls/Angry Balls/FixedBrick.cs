@@ -19,7 +19,6 @@ namespace Angry_Balls
 
         Body brickBody;
 
-
         public FixedBrick(Vector2 positionInput)
         {
             position = positionInput;

@@ -223,3 +223,9 @@
 /processorParam:Quality=Best
 /build:Mine.wav
 
+#begin TimeBomb.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:TimeBomb.wav
+

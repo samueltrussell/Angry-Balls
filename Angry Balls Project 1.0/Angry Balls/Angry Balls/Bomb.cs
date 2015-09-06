@@ -43,12 +43,17 @@ namespace Angry_Balls
         {
             if (placed)
             {
+                Game1.bombInstance.Play();
                 timer -= 0.025;
+            }
+
+            if(timer <= -0.55)
+            {
+                Game1.bombInstance.Stop();
             }
 
             if (timer <= 1)
             {
-                Game1.mineInstance.Play();
                 Explode();
             }
         }
