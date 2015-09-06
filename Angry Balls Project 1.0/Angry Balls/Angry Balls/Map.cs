@@ -86,7 +86,6 @@ namespace Angry_Balls
                     TBIList.placedMines.Remove(element);
                 }
             }
-
         }
 
         }

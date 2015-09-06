@@ -32,11 +32,11 @@ namespace Angry_Balls
             imageOrigin = new Vector2 (position.X - image.Width / 2, position.Y - image.Height / 2);
             size = new Vector2 ( 78, 80 );
             dragable = true;
-            timer = 5.0;
+            timer = 6.0;
             timerLocation = new Vector2 ( position.X + size.X / 2 + 10,  position.Y - 10 );
             explodeLocation = position;
             explodeImage = Game1.explodeImage;
-
+            color = Color.White;
         }
 
         public void update()
@@ -46,12 +46,11 @@ namespace Angry_Balls
                 timer -= 0.025;
             }
 
-            if (timer <= 0)
+            if (timer <= 1)
             {
                 Game1.mineInstance.Play();
                 Explode();
             }
-
         }
     
         public void draw(SpriteBatch spriteBatch)
@@ -62,15 +61,16 @@ namespace Angry_Balls
             imageOrigin.X = position.X - image.Width / 2;
             imageOrigin.Y = position.Y - image.Height / 2;
 
-            if (placed && timer > 0)//during countdown
+            if (placed && timer > 1)//during countdown
             {
+                color = Color.White;
                 spriteBatch.DrawString(Game1.bombTimerFont, (int)timer + "!", new Vector2(timerLocation.X, timerLocation.Y), Color.Red);
                 position = UnitConverter.toPixelSpace(bombBody.Position);
-                spriteBatch.Draw(image, position, null, Color.White, bombBody.Rotation, bombBodyOrigin, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(image, position, null, color, bombBody.Rotation, bombBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
-            else if(placed && timer >= -2 && timer <= 0)//while exploding
+            else if(placed && timer >= -2 && timer <= 1)//while exploding
             {
-                spriteBatch.Draw(explodeImage, explodeLocation, null, Color.White, bombBody.Rotation, bombBodyOrigin, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(explodeImage, explodeLocation, null, color, bombBody.Rotation, bombBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
             else //Toolbox & While Dragging
             {

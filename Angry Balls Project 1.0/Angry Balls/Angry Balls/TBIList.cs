@@ -20,10 +20,11 @@ namespace Angry_Balls
 
         //ToolBox Start Poses
         Vector2 bombStart = new Vector2 ( 885, 100 );
-        Vector2 mineStart = new Vector2 ( 885, 210 );
+        Vector2 mineStart = new Vector2 ( 885, 200 );
+        Vector2 brickStart = new Vector2( 885, 300 );
 
         //Positions will change according to levels
-        Vector2 startPose4 = new Vector2 ( 0,  400 );
+        /*Vector2 startPose4 = new Vector2 ( 0,  400 );
         Vector2 startPose5 = new Vector2 ( 85, 450 );
         Vector2 startPose6 = new Vector2 ( 170, 500 );
 
@@ -37,14 +38,14 @@ namespace Angry_Balls
 
         Vector2 startPose13 = new Vector2 ( 765, 850 );
         Vector2 startPose14 = new Vector2 ( 750, 900 );
-        Vector2 startPose15 = new Vector2 ( 825, 950 );
+        Vector2 startPose15 = new Vector2 ( 825, 950 );*/
 
 
         //Initialisation for new lists must also be done here in the constructor
         public TBIList()
         {
             //Took dynamic items into another class
-            FixedBrickList.Add(new FixedBrick(startPose4));
+            /*FixedBrickList.Add(new FixedBrick(startPose4));
             FixedBrickList.Add(new FixedBrick(startPose5));
             FixedBrickList.Add(new FixedBrick(startPose6));
 
@@ -57,8 +58,8 @@ namespace Angry_Balls
             FixedBrickList.Add(new FixedBrick(startPose12));
 
             FixedBrickList.Add(new FixedBrick(startPose13));
-            //FixedBrickList.Add(new FixedBrick(startPose14));
-            //FixedBrickList.Add(new FixedBrick(startPose15));
+            FixedBrickList.Add(new FixedBrick(startPose14));
+            FixedBrickList.Add(new FixedBrick(startPose15));*/
 
             //Add Bombs
             for(int i = 0; i < 10; i ++)
@@ -66,6 +67,11 @@ namespace Angry_Balls
             //Add Mines
             for(int i = 0; i < 10; i++)
                 placedMines.Add(new ProxMine(mineStart));
+            //Add Bricks
+            for(int i = 0; i < 10; i++)
+            {
+                FixedBrickList.Add(new FixedBrick(brickStart));
+            }
 
 
         }

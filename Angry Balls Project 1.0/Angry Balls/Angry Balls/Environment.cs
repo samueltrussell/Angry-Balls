@@ -19,7 +19,7 @@ namespace Angry_Balls
         Texture2D background;
         public static bool objectClicked = false;
 
-        public InputManager Input;
+        public static InputManager Input;
         public Map map;
         public TBoxItem selectedObject;
         protected bool justClicked;
@@ -74,12 +74,6 @@ namespace Angry_Balls
 
             //Draw the Ball
             angryBall.Draw(spriteBatch);
-
-            //Draw Fixed Bricks (draw Map)
-            foreach (FixedBrick element in map.TBIList.FixedBrickList)
-            {
-                element.draw(spriteBatch);
-            }
      
             //Draw ToolBox
             if (toolBox.Show()) toolBox.draw(spriteBatch);
@@ -91,6 +85,12 @@ namespace Angry_Balls
             }
 
             foreach (ProxMine element in map.TBIList.placedMines)
+            {
+                element.draw(spriteBatch);
+            }
+
+            //Draw Fixed Bricks (draw Map)
+            foreach (FixedBrick element in map.TBIList.FixedBrickList)
             {
                 element.draw(spriteBatch);
             }
@@ -112,12 +112,12 @@ namespace Angry_Balls
                     //selectedObject = map.FindClickedButton(mouseState);
                     justClicked = true;
                 }
-                
+
                 if (selectedObject != null)
                 {
+                    selectedObject.color = Color.Red;
                     Input.Update(selectedObject);
-                }
-                
+                }               
             }
 
             else if(mouseState.LeftButton != ButtonState.Pressed && justClicked == true)
@@ -130,6 +130,25 @@ namespace Angry_Balls
                 
             }
 
+            KeyboardState keyState = Keyboard.GetState();
+
+            if (keyState.IsKeyDown(Keys.Enter) && angryBall.ballBody.BodyType == BodyType.Static)
+            {
+                angryBall.ballBody.BodyType = BodyType.Dynamic;
+            }
+            if (keyState.IsKeyDown(Keys.P) && angryBall.ballBody.BodyType == BodyType.Dynamic)
+            {
+                angryBall.ballBody.BodyType = BodyType.Static;
+            }
+            if(keyState.IsKeyDown(Keys.Space))
+            {
+                angryBall.ballBody.ApplyForce(new Vector2(10.0f, -50.0f));
+            }
+            if(keyState.IsKeyDown(Keys.Q))
+            {
+                System.Environment.Exit(0);
+            }
+
             //Update objects on the field, if necessary
             map.update();
         }
@@ -138,11 +157,5 @@ namespace Angry_Balls
         {
             //map.initialize();
         }
-
-
-
-        
-
-
     }
 }

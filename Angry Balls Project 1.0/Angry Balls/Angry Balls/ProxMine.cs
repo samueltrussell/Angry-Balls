@@ -36,7 +36,7 @@ namespace Angry_Balls
             dragable = true;
             timer = 0.0;
             explodeLocation = position;
-            
+            color = Color.White;
         }
 
         public void update()
@@ -52,12 +52,13 @@ namespace Angry_Balls
         {
             if (placed)//On Map
             {
+                color = Color.White;
                 position = UnitConverter.toPixelSpace(mineBody.Position);
-                spriteBatch.Draw(image, position, null, Color.White, mineBody.Rotation, mineBodyOrigin, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(image, position, null, color, mineBody.Rotation, mineBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
             else if (timer >= -2 && exploded)//exploding
             {
-                spriteBatch.Draw(image, new Rectangle(explodeLocation.ToPoint(), size.ToPoint()), Color.White);
+                spriteBatch.Draw(image, new Rectangle(explodeLocation.ToPoint(), size.ToPoint()), color);
             }
             else //Toolbox
             {

@@ -7,6 +7,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using FarseerPhysics.Dynamics;
 
 namespace Angry_Balls
 {
@@ -16,14 +17,15 @@ namespace Angry_Balls
 
         public InputManager()
         {
-            justClicked = true;
+            justClicked = false;
         }
-        
+
         public void Update(TBoxItem item)
         {
             // On initial click only, get selected object back from the Map class
             if (justClicked == true)
             {
+                item.color = Color.Red;
                 justClicked = false;
             }
 
@@ -32,9 +34,14 @@ namespace Angry_Balls
             // once we have a selected object, update the object as appropriate position using the mouse
             if (item.isDragable())
             {
-                Vector2 newPosition = new Vector2 (mouseState.X, mouseState.Y );
-                item.PostionUpdate(newPosition);
+                item.color = Color.Red;
             }
+            else
+            {
+                item.color = Color.White;
+            }
+            Vector2 newPosition = new Vector2(mouseState.X, mouseState.Y);
+            item.PositionUpdate(newPosition);
         }
 
         public bool JustClicked()
@@ -46,7 +53,5 @@ namespace Angry_Balls
         {
             justClicked = true;
         }
-
-
     }
 }

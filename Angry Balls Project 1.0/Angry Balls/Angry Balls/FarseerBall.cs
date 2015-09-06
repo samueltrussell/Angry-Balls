@@ -46,9 +46,9 @@ namespace Angry_Balls
             ballBody = BodyFactory.CreateCircle(Game1.world, UnitConverter.toSimSpace(RADIUS), 1.0f, UnitConverter.toSimSpace(inputPosition), 5);
             
             //don't move ball
-            //ballBody.BodyType = BodyType.Static;
+            ballBody.BodyType = BodyType.Static;
             //move ball
-            ballBody.BodyType = BodyType.Dynamic;
+            //ballBody.BodyType = BodyType.Dynamic;
 
             ballBody.GravityScale = 1.0f;
             ballBody.Restitution = 0.85f;

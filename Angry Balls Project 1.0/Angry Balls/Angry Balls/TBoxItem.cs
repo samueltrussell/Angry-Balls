@@ -13,13 +13,15 @@ namespace Angry_Balls
 
     class TBoxItem
     {
-        protected Texture2D image;
-        protected Vector2 position; //[x,y] position in pixel space for tracking, physics, and rendering
-        protected Vector2 size; // [width, height] Size of the representatvie image in pixel space 
+        public Texture2D image;
+        public Vector2 position; //[x,y] position in pixel space for tracking, physics, and rendering
+        public Vector2 size; // [width, height] Size of the representatvie image in pixel space 
         protected Vector2 imageOrigin;
         protected bool dragable = false;
-        protected bool placed = false;
+        public bool placed = false;
         protected bool destroyed = false;
+
+        public Color color;
 
         //Base class constructor, SHOULD be overloaded by each derived TBI
         public TBoxItem()
@@ -33,11 +35,11 @@ namespace Angry_Balls
         {
             Vector2 topLeft = new Vector2 (position.X - image.Width / 2, position.Y - image.Height / 2);
             size = new Vector2 (image.Width, image.Height);
-            spriteBatch.Draw(image, new Rectangle(topLeft.ToPoint(),size.ToPoint()), Color.White);
+            spriteBatch.Draw(image, new Rectangle(topLeft.ToPoint(),size.ToPoint()), color);
         }
 
         //passed a new position vector, updates position
-        public void PostionUpdate(Vector2 newPosition) 
+        public void PositionUpdate(Vector2 newPosition) 
         {
             position = newPosition;
         }
