@@ -30,8 +30,10 @@ namespace Angry_Balls
         public static SpriteFont bombTimerFont;
 
         //Audio
+        private SoundEffect bombExplosion;
         private SoundEffect mineExplosion;
 
+        public static SoundEffectInstance bombInstance;
         public static SoundEffectInstance mineInstance;
 
         //Game environment
@@ -86,8 +88,11 @@ namespace Angry_Balls
             }
 
             // Load Audio
+
+            bombExplosion = Content.Load<SoundEffect>("TimeBomb");
             mineExplosion = Content.Load<SoundEffect>("Mine");
 
+            bombInstance = bombExplosion.CreateInstance();
             mineInstance = mineExplosion.CreateInstance();
 
             // Create a new SpriteBatch, which can be used to draw textures.

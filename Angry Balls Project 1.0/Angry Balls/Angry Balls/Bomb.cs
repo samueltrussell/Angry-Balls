@@ -44,12 +44,17 @@ namespace Angry_Balls
         {
             if (placed)
             {
-                timer -= 0.03;
+                Game1.bombInstance.Play();
+                timer -= 0.025;
+            }
+
+            if(timer <= -0.55)
+            {
+                Game1.bombInstance.Stop();
             }
 
             if (timer <= 0)
             {
-                Game1.mineInstance.Play();
                 Explode();
             }
         }
@@ -84,20 +89,6 @@ namespace Angry_Balls
                 DefaultDraw(spriteBatch);
             }
         }
-
-        //private bool BombBody_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
-        //{
-        //    if (fixtureB.Body.BodyType == BodyType.Dynamic)
-        //    {
-        //        Explode();
-        //        Vector2 force = fixtureA.Body.Position - fixtureB.Body.Position;
-        //        force *= explosionForce;
-        //        fixtureA.Body.ApplyForce(force);
-        //        return true;
-        //    }
-        //    else return true;
-        //    //throw new NotImplementedException();
-        //}
 
 
         public override void Placed()

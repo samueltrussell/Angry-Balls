@@ -33,14 +33,7 @@ namespace Angry_Balls
             MouseState mouseState = Mouse.GetState();
 
             // once we have a selected object, update the object as appropriate position using the mouse
-            if (item.isDragable())
-            {
-                item.color = Color.Red;
-            }
-            else
-            {
-                item.color = Color.White;
-            }
+
             Vector2 newPosition = new Vector2(mouseState.X, mouseState.Y);
             item.PositionUpdate(newPosition);
         }
