@@ -22,6 +22,7 @@ namespace Angry_Balls
         private Vector2 bombBodyOrigin;
         private Vector2 explosionForce = new Vector2(500, 500);
         private Body bombBody;
+        private Explosion bombExplosion;
         private bool exploded = false;
         private int radius = 78 / 2;
 
@@ -43,10 +44,10 @@ namespace Angry_Balls
         {
             if (placed)
             {
-                timer -= 0.025;
+                timer -= 0.03;
             }
 
-            if (timer <= 1)
+            if (timer <= 0)
             {
                 Game1.mineInstance.Play();
                 Explode();
@@ -61,14 +62,20 @@ namespace Angry_Balls
             imageOrigin.X = position.X - image.Width / 2;
             imageOrigin.Y = position.Y - image.Height / 2;
 
-            if (placed && timer > 1)//during countdown
+            //Explosion debug draw
+            if (placed && exploded)
+            {
+                bombExplosion.Draw(spriteBatch);
+            }
+
+            if (placed && timer > 0)//during countdown
             {
                 color = Color.White;
                 spriteBatch.DrawString(Game1.bombTimerFont, (int)timer + "!", new Vector2(timerLocation.X, timerLocation.Y), Color.Red);
                 position = UnitConverter.toPixelSpace(bombBody.Position);
                 spriteBatch.Draw(image, position, null, color, bombBody.Rotation, bombBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
-            else if(placed && timer >= -2 && timer <= 1)//while exploding
+            else if(placed && exploded && !destroyed)//while exploding
             {
                 spriteBatch.Draw(explodeImage, explodeLocation, null, color, bombBody.Rotation, bombBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
@@ -78,19 +85,19 @@ namespace Angry_Balls
             }
         }
 
-        private bool BombBody_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
-        {
-            if (fixtureB.Body.BodyType == BodyType.Dynamic)
-            {
-                Explode();
-                Vector2 force = fixtureA.Body.Position - fixtureB.Body.Position;
-                force *= explosionForce;
-                fixtureA.Body.ApplyForce(force);
-                return true;
-            }
-            else return true;
-            //throw new NotImplementedException();
-        }
+        //private bool BombBody_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        //{
+        //    if (fixtureB.Body.BodyType == BodyType.Dynamic)
+        //    {
+        //        Explode();
+        //        Vector2 force = fixtureA.Body.Position - fixtureB.Body.Position;
+        //        force *= explosionForce;
+        //        fixtureA.Body.ApplyForce(force);
+        //        return true;
+        //    }
+        //    else return true;
+        //    //throw new NotImplementedException();
+        //}
 
 
         public override void Placed()
@@ -120,18 +127,19 @@ namespace Angry_Balls
                 explodeLocation.X += xShift;
                 explodeLocation.Y += yShift;
 
-                Environment.angryBall.ballBody.ApplyForce(UnitConverter.toSimSpace(-explosionForce));
-
-                bombBody.ApplyAngularImpulse(.20f);
+                //Environment.angryBall.ballBody.ApplyForce(UnitConverter.toSimSpace(-explosionForce));
+                //bombBody.ApplyAngularImpulse(.20f);
 
                 if (!exploded)
                 {
                     Game1.world.RemoveBody(bombBody);
+                    bombExplosion = new Explosion(Game1.world, 500f, UnitConverter.toSimSpace(position));
                     exploded = true;
                 }
             }
             else
             {
+                bombExplosion.cleanExplosion();
                 destroyed = true;
             }
 

@@ -27,6 +27,7 @@ namespace Angry_Balls
         private int radius = 78 / 2;
         private Vector2 mineBodyOrigin;
         private Body mineBody;
+        private Explosion mineExplosion;
 
         public ProxMine(Vector2 positionInput)
         {
@@ -50,14 +51,15 @@ namespace Angry_Balls
 
         public void draw(SpriteBatch spriteBatch)
         {
-            if (placed)//On Map
+            if (placed && !exploded)//On Map
             {
                 color = Color.White;
                 position = UnitConverter.toPixelSpace(mineBody.Position);
                 spriteBatch.Draw(image, position, null, color, mineBody.Rotation, mineBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
-            else if (timer >= -2 && exploded)//exploding
+            else if (placed && exploded)//exploding
             {
+                mineExplosion.Draw(spriteBatch);
                 spriteBatch.Draw(image, new Rectangle(explodeLocation.ToPoint(), size.ToPoint()), color);
             }
             else //Toolbox
@@ -88,10 +90,13 @@ namespace Angry_Balls
         {
             if(fixtureB.Body.BodyType == BodyType.Dynamic)
             {
-                Explode();
+                if (!destroyed)
+                {
+                    Explode();
+                }
                 Vector2 force = fixtureB.Body.Position - fixtureA.Body.Position;
                 force *= explosionForce;
-                fixtureB.Body.ApplyForce(force);
+                //fixtureB.Body.ApplyForce(force);
                 return true;
             }
             else return true;
@@ -110,14 +115,17 @@ namespace Angry_Balls
                 explodeLocation.X += xShift;
                 explodeLocation.Y += yShift;
                 timer -= .025f;
+
                 if (!exploded)
                 {
                     Game1.world.RemoveBody(mineBody);
+                    mineExplosion = new Explosion(Game1.world, 500f, mineBody.Position);
                     exploded = true;
                 }
             }
-            else
+            else if(!destroyed)
             {
+                mineExplosion.cleanExplosion();
                 destroyed = true;
             }
 

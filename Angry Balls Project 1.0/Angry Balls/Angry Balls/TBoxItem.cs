@@ -34,7 +34,6 @@ namespace Angry_Balls
         public void DefaultDraw(SpriteBatch spriteBatch) 
         {
             Vector2 topLeft = new Vector2 (position.X - image.Width / 2, position.Y - image.Height / 2);
-            size = new Vector2 (image.Width, image.Height);
             spriteBatch.Draw(image, new Rectangle(topLeft.ToPoint(),size.ToPoint()), color);
         }
 
@@ -49,8 +48,8 @@ namespace Angry_Balls
         public bool isClicked(MouseState mouseState) 
         {
             if (mouseState.LeftButton == ButtonState.Pressed &&
-                mouseState.X > position.X - image.Width / 2 && mouseState.X < position.X + image.Width / 2 &&
-                mouseState.Y > position.Y - image.Height / 2 && mouseState.Y < position.Y + image.Height / 2 &&
+                mouseState.X > position.X - size.X / 2 && mouseState.X < position.X + size.X / 2 &&
+                mouseState.Y > position.Y - size.Y / 2 && mouseState.Y < position.Y + size.Y / 2 &&
                 isDragable())
             {
                 return true;

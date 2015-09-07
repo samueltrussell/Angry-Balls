@@ -19,23 +19,24 @@ namespace Angry_Balls
         Texture2D background;
         public static bool objectClicked = false;
 
-        public static InputManager Input;
-        public Map map;
-        public TBoxItem selectedObject;
-        protected bool justClicked;
-        public ToolBox toolBox;
-        public static FarseerBall angryBall;    // Made static so I could reference from TBoxItem Class
+        private InputManager Input;
+        private Map map;
+        private ToolBox toolBox;
+        private FarseerBall angryBall;    // Made static so I could reference from TBoxItem Class
 
         //Border Bodies for the Physics Engine
-        public Body leftWall;
-        public Body rightWall;
-        public Body floor;
-        public Body ceiling;
+        private Body leftWall;
+        private Body rightWall;
+        private Body floor;
+        private Body ceiling;
 
-        Vector2 leftWallPosition = UnitConverter.toSimSpace(new Vector2(-5, 640));
-        Vector2 rightWallPosition = UnitConverter.toSimSpace(new Vector2(815, 640));
-        Vector2 ceilingPosition = UnitConverter.toSimSpace(new Vector2(480, -640));
-        Vector2 floorPosition = UnitConverter.toSimSpace(new Vector2(480, 1360));
+        private Vector2 leftWallPosition = UnitConverter.toSimSpace(new Vector2(-5, 640));
+        private Vector2 rightWallPosition = UnitConverter.toSimSpace(new Vector2(815, 640));
+        private Vector2 ceilingPosition = UnitConverter.toSimSpace(new Vector2(480, -640));
+        private Vector2 floorPosition = UnitConverter.toSimSpace(new Vector2(480, 1360));
+
+        //Play Controls
+        private PlayPauseButton playPauseButton;
 
         protected Vector2 ballStartPose = new Vector2(150, 150);
 
@@ -45,10 +46,13 @@ namespace Angry_Balls
         //Environment Constructor
         public Environment()
         {
+            //Initialize the Buttons
+            playPauseButton = new PlayPauseButton(gameState);
+
             background = Game1.environmentBackground;
             Input = new InputManager();
             map = new Map();
-            justClicked = false;
+            //justClicked = false;
             toolBox = new ToolBox();
             gameState = GameState.run;
             angryBall = new FarseerBall(ballStartPose);
@@ -71,6 +75,9 @@ namespace Angry_Balls
             Point screenSize = new Point { X = Game1.graphics.PreferredBackBufferWidth, Y = Game1.graphics.PreferredBackBufferHeight };
             Rectangle screen = new Rectangle(Point.Zero, screenSize);
             spriteBatch.Draw(background, screen, Color.White);
+
+            //Draw the control Buttons
+            playPauseButton.Draw(spriteBatch);
 
             //Draw the Ball
             angryBall.Draw(spriteBatch);
@@ -101,34 +108,11 @@ namespace Angry_Balls
 
         public void update()
         {
-            //Handle Mouse Input for drag and drop
+            //Handle Inputs
             MouseState mouseState = Mouse.GetState();
+            Input.HandleButtons(playPauseButton, mouseState, ref gameState);
+            Input.HandleDragAndDrop(map, mouseState);
 
-            if (mouseState.LeftButton == ButtonState.Pressed)
-            {
-                if (justClicked == false)
-                {
-                    selectedObject = map.FindClickedObject(mouseState);
-                    //selectedObject = map.FindClickedButton(mouseState);
-                    justClicked = true;
-                }
-
-                if (selectedObject != null)
-                {
-                    selectedObject.color = Color.Red;
-                    Input.Update(selectedObject);
-                }               
-            }
-
-            else if(mouseState.LeftButton != ButtonState.Pressed && justClicked == true)
-            {
-                justClicked = false;
-                if(selectedObject != null)
-                {
-                    selectedObject.Placed();
-                }
-                
-            }
 
             KeyboardState keyState = Keyboard.GetState();
 
@@ -149,7 +133,7 @@ namespace Angry_Balls
                 System.Environment.Exit(0);
             }
 
-            //Update objects on the field, if necessary
+            //Update objects in the environment
             map.update();
         }
 

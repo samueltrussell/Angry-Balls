@@ -86,6 +86,15 @@ namespace Angry_Balls
                     TBIList.placedMines.Remove(element);
                 }
             }
+            //Check to see if any bricks have been destroyed, if so, remove them
+            foreach(FixedBrick element in TBIList.FixedBrickList.Reverse<FixedBrick>())
+            {
+                if (element.IsDestroyed())
+                {
+                    TBIList.FixedBrickList.Remove(element);
+                }
+            }
+
         }
 
         }

@@ -17,6 +17,8 @@ namespace Angry_Balls
         SpriteBatch spriteBatch;
 
         //Images
+        public static Texture2D playButtonImage;
+        public static Texture2D pauseButtonImage;
         public static Texture2D ballImage;
         public static Texture2D bombImage;
         public static Texture2D mineImage;
@@ -90,6 +92,8 @@ namespace Angry_Balls
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            playButtonImage = Content.Load<Texture2D>("play_button_temp");
+            pauseButtonImage = Content.Load<Texture2D>("pause_button_temp");
             ballImage = Content.Load<Texture2D>("rp_ball");
             bombImage = Content.Load<Texture2D>("rp_bomb_1");
             mineImage = Content.Load<Texture2D>("rp_mine_2");
@@ -136,7 +140,7 @@ namespace Angry_Balls
                 //Console.WriteLine(Environment.angryBall.ballBody.Position.Y);
             }
             else if (environment.gameState == Environment.GameState.pause)
-
+                environment.update();
 
 
             base.Update(gameTime);
@@ -156,6 +160,9 @@ namespace Angry_Balls
 
             //draw the background
             environment.Draw(spriteBatch);
+
+            //Debug Draws
+            //spriteBatch.DrawString(bombTimerFont, "Number of Bodies: " + world.BodyList.Count, new Vector2(50, 50), Color.White);
 
             spriteBatch.End();
             

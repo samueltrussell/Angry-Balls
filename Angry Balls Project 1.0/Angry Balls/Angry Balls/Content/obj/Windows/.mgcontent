@@ -4,25 +4,27 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/earth.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/Bomb.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/stars.jpg</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_small_bricks_sprite_1.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/toolbox.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/BombTimer.spritefont</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/Explosion.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_background_1_example.jpg</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_bricks_sprite_1.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_bomb_and_mine_sprite_1.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_background_1.jpg</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_bomb_1.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_mine_1.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_tool_bar.jpg</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_mine_2.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_temp_ball.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_bomb_explode_1.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_ball.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_mine_explode_1.png</File>
-    <File>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/Mine.wav</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/earth.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/Bomb.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/stars.jpg</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_small_bricks_sprite_1.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/toolbox.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/BombTimer.spritefont</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/Explosion.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_background_1_example.jpg</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_bricks_sprite_1.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_bomb_and_mine_sprite_1.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_background_1.jpg</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_bomb_1.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_mine_1.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_tool_bar.jpg</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_mine_2.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_temp_ball.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_bomb_explode_1.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_ball.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_mine_explode_1.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/Mine.wav</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/play_button_temp.png</File>
+    <File>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/pause_button_temp.png</File>
   </SourceFiles>
 </SourceFileCollection>

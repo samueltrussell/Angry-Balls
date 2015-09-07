@@ -46,7 +46,7 @@ namespace Angry_Balls
             ballBody = BodyFactory.CreateCircle(Game1.world, UnitConverter.toSimSpace(RADIUS), 1.0f, UnitConverter.toSimSpace(inputPosition), 5);
             
             //don't move ball
-            ballBody.BodyType = BodyType.Static;
+            ballBody.BodyType = BodyType.Dynamic;
             //move ball
             //ballBody.BodyType = BodyType.Dynamic;
 
@@ -70,6 +70,7 @@ namespace Angry_Balls
             drawLowerRight.Y = UnitConverter.toPixelSpace(position.Y) + size.Y / 2;
 
             spriteBatch.Draw(image, new Rectangle(drawUpperLeft, size), Color.White);
+           
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Angry_Balls
     {
         protected int brickHeight = 45; //Px
         protected int brickWidth = 85; //Px
+        protected int brickStrength = 5;
 
         Body brickBody;
 
@@ -59,10 +60,30 @@ namespace Angry_Balls
             brickBody = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(brickWidth), UnitConverter.toSimSpace(brickHeight), 1.0f, UnitConverter.toSimSpace(position));
 
             brickBody.BodyType = BodyType.Static;
-            //brickBody.GravityScale = 1.0f;
+            brickBody.OnCollision += BrickBody_OnCollision;
             brickBody.Restitution = 0.1f;
             brickBody.AngularDamping = 20;
             brickBody.Friction = 0.5f;
+        }
+
+        private bool BrickBody_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        {
+            if (fixtureB.Body.IsBullet)
+            {
+                TakeDamage();
+            }
+
+            return true;
+        }
+
+        private void TakeDamage()
+        {
+            brickStrength--;
+            if(!destroyed && brickStrength <= 0)
+            {
+                Game1.world.RemoveBody(this.brickBody);
+                destroyed = true;
+            }
         }
     }
 }

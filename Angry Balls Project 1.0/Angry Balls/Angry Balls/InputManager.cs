@@ -14,10 +14,11 @@ namespace Angry_Balls
     class InputManager
     {
         protected bool justClicked;
+        protected TBoxItem selectedObject;
 
         public InputManager()
         {
-            justClicked = false;
+            justClicked = true;
         }
 
         public void Update(TBoxItem item)
@@ -52,6 +53,51 @@ namespace Angry_Balls
         public void reset()
         {
             justClicked = true;
+        }
+
+        public void HandleButtons(PlayPauseButton playPauseButton, MouseState mouseState, ref Environment.GameState gameState)
+        {
+            if (justClicked)
+            {
+                if (playPauseButton.isClicked(mouseState))
+                {
+                    playPauseButton.Toggle(ref gameState);
+                    justClicked = false;
+                }
+            }
+
+            if (mouseState.LeftButton != ButtonState.Pressed && justClicked == true)
+            {
+                justClicked = true;
+            }
+        }
+
+        public void HandleDragAndDrop(Map map, MouseState mouseState)
+        {
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                if (justClicked == true)
+                {
+                    selectedObject = map.FindClickedObject(mouseState);
+                    justClicked = false;
+                }
+
+                if (selectedObject != null)
+                {
+                    selectedObject.color = Color.Red;
+                    Update(selectedObject);
+                }
+            }
+
+            else if (mouseState.LeftButton != ButtonState.Pressed && justClicked == false)
+            {
+                justClicked = true;
+                if (selectedObject != null)
+                {
+                    selectedObject.Placed();
+                }
+
+            }
         }
     }
 }
