@@ -39,12 +39,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bomb.cs" />
+    <Compile Include="Editor.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="Explosion.cs" />
     <Compile Include="FarseerBall.cs" />
     <Compile Include="FixedBrick.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="Layer.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="PlayButton.cs" />
     <Compile Include="Program.cs" />
