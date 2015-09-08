@@ -13,21 +13,21 @@ namespace Angry_Balls
 {
     class InputManager
     {
-        protected bool justClicked;
+        protected bool TBIJustClicked = true;
+        protected bool buttonJustClicked = true;
         protected TBoxItem selectedObject;
 
         public InputManager()
         {
-            justClicked = true;
         }
 
         public void Update(TBoxItem item)
         {
             // On initial click only, get selected object back from the Map class
-            if (justClicked == true)
-            {
-                justClicked = false;
-            }
+            //if (justClicked == true)
+            //{
+            //    justClicked = false;
+            //}
 
             MouseState mouseState = Mouse.GetState();
 
@@ -39,43 +39,39 @@ namespace Angry_Balls
 
         public bool JustClicked()
         {
-            return justClicked;
+            return TBIJustClicked;
         }
 
         public void reset()
         {
-            justClicked = true;
+            TBIJustClicked = true;
         }
 
-        public void HandleButtons(PlayPauseButton playPauseButton, MouseState mouseState, ref AngryBallsEnvironment.GameState gameState)
+        public void HandleButtons(Map map, PlayPauseButton playPauseButton, MouseState mouseState, ref AngryBallsEnvironment.GameState gameState)
         {
-            if (justClicked)
+            if (buttonJustClicked)
             {
                 if (playPauseButton.isClicked(mouseState))
                 {
                     playPauseButton.Toggle(ref gameState);
-                    justClicked = false;
+                    buttonJustClicked = false;
                 }
             }
 
-            if (mouseState.LeftButton != ButtonState.Pressed && justClicked == false)
+            if (mouseState.LeftButton != ButtonState.Pressed && buttonJustClicked == false)
             {
-                justClicked = true;
-                if (selectedObject != null)
-                {
-                    selectedObject.Placed();
-                }
+                buttonJustClicked = true;
             }
         }
 
-        public void HandleDragAndDrop(Map map, MouseState mouseState)
+        public void HandleDragAndDrop(Map map, MouseState mouseState, AngryBallsEnvironment.GameState gameState)
         {
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-                if (justClicked == true)
+                if (TBIJustClicked == true)
                 {
                     selectedObject = map.FindClickedObject(mouseState);
-                    justClicked = false;
+                    TBIJustClicked = false;
                 }
 
                 if (selectedObject != null)
@@ -84,13 +80,23 @@ namespace Angry_Balls
                 }
             }
 
-            else if (mouseState.LeftButton != ButtonState.Pressed && justClicked == false)
+            else if (mouseState.LeftButton != ButtonState.Pressed && TBIJustClicked == false)
             {
-                justClicked = true;
+                TBIJustClicked = true;
                 if (selectedObject != null)
                 {
-                    selectedObject.Placed();
+                    if (gameState == AngryBallsEnvironment.GameState.levelBuilder)
+                    {
+                        selectedObject.Create(map);
+                    }
+                    else
+                    {
+                        selectedObject.Placed();
+                    }
+
                 }
+
+
 
             }
         }

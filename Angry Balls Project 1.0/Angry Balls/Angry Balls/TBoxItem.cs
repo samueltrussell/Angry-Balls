@@ -72,6 +72,12 @@ namespace Angry_Balls
    
         }
 
+        public virtual void Create(Map map)
+        {
+
+        }
+
+
         public bool IsDestroyed()
         {
             return destroyed;

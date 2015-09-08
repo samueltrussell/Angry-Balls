@@ -28,7 +28,7 @@ namespace Angry_Balls
             dragable = true;
             placed = initPlaced;
             if (placed) { Placed(); }
-            dragColor = Color.Red;
+            dragColor = Color.White;
         }
 
         public void draw(SpriteBatch spriteBatch)

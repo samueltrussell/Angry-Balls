@@ -28,6 +28,7 @@ namespace Angry_Balls
         public static Texture2D brickTextureAtlas;
         public static Texture2D toolBoxBackGround;
         public static SpriteFont bombTimerFont;
+        public static Texture2D saveImage;
 
         //Audio
         public static SoundEffect bombExplosion;
@@ -102,6 +103,7 @@ namespace Angry_Balls
             environmentBackground = Content.Load<Texture2D>("rp_background_1");
             toolBoxBackGround = Content.Load<Texture2D>("rp_tool_bar");
             bombTimerFont = Content.Load<SpriteFont>("BombTimer");
+            saveImage = Content.Load<Texture2D>("save");
 
             environment = new AngryBallsEnvironment();
             

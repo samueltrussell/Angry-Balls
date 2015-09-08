@@ -68,10 +68,10 @@ namespace Angry_Balls
             for(int i = 0; i < 10; i++)
                 placedMines.Add(new ProxMine(mineStart));
             //Add Bricks
-            for(int i = 0; i < 10; i++)
-            {
-                FixedBrickList.Add(new FixedBrick(brickStart,false));
-            }
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    FixedBrickList.Add(new FixedBrick(brickStart, false));
+            //}
 
 
         }

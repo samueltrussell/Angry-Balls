@@ -37,6 +37,7 @@ namespace Angry_Balls
 
         //Play Controls
         private PlayPauseButton playPauseButton;
+        private SaveButton savebutton;
 
         protected Vector2 ballStartPose = new Vector2(150, 150);
 
@@ -46,15 +47,17 @@ namespace Angry_Balls
         //Environment Constructor
         public AngryBallsEnvironment()
         {
+            gameState = GameState.levelBuilder;
+
             //Initialize the Buttons
             playPauseButton = new PlayPauseButton(gameState);
+            savebutton = new SaveButton(gameState);
 
             background = Game1.environmentBackground;
             Input = new InputManager();
             map = new Map();
             //justClicked = false;
             toolBox = new ToolBox();
-            gameState = GameState.pause;
             angryBall = new FarseerBall(ballStartPose);
 
             //Physics Bodies for Walls
@@ -82,11 +85,15 @@ namespace Angry_Balls
             //Draw the Ball
             angryBall.Draw(spriteBatch);
 
+            //Draw save button
+            if (gameState == AngryBallsEnvironment.GameState.levelBuilder)
+                savebutton.Draw(spriteBatch);
+
             //Draw ToolBox
             if (toolBox.Show()) toolBox.draw(spriteBatch);
 
             //Draw Items from the map
-            map.Draw(spriteBatch);
+            map.Draw(spriteBatch, gameState);
 
         }
 
@@ -94,12 +101,9 @@ namespace Angry_Balls
         {
             //Handle Inputs
             MouseState mouseState = Mouse.GetState();
-            Input.HandleButtons(playPauseButton, mouseState, ref gameState);
+            Input.HandleButtons(map, playPauseButton, mouseState, ref gameState);
 
-            if (gameState == GameState.run || gameState == GameState.levelBuilder)
-            {
-                Input.HandleDragAndDrop(map, mouseState); //handle the drag and drop
-            }
+            Input.HandleDragAndDrop(map, mouseState, gameState); //handle the drag and drop
             
             Input.HandleKeyboard(angryBall);//Handle Keyboard inputs
 

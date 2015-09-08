@@ -44,6 +44,7 @@
     <Compile Include="Explosion.cs" />
     <Compile Include="FarseerBall.cs" />
     <Compile Include="FixedBrick.cs" />
+    <Compile Include="FixedBrickCreator.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="InputManager.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxMine.cs" />
+    <Compile Include="SaveButton.cs" />
     <Compile Include="TBIList.cs" />
     <Compile Include="TBIListDynamic.cs" />
     <Compile Include="TBoxItem.cs" />
