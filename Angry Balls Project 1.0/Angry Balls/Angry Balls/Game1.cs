@@ -25,8 +25,10 @@ namespace Angry_Balls
         public static Texture2D explodeImage;
         public static Texture2D mineExplodeImage;
         public static Texture2D environmentBackground;
-        public static Texture2D brickTextureAtlas;
+        public static Texture2D FixedBrickTextureAtlas;
+        public static Texture2D DestructableBrickTextureAtlas;
         public static Texture2D toolBoxBackGround;
+        public static Texture2D brickParticleImage;
         public static SpriteFont bombTimerFont;
 
         //Audio
@@ -91,14 +93,16 @@ namespace Angry_Balls
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            playButtonImage = Content.Load<Texture2D>("play_button_temp");
-            pauseButtonImage = Content.Load<Texture2D>("pause_button_temp");
+            playButtonImage = Content.Load<Texture2D>("rp_play_icon_2");
+            pauseButtonImage = Content.Load<Texture2D>("rp_pause_icon_2");
             ballImage = Content.Load<Texture2D>("rp_ball");
             bombImage = Content.Load<Texture2D>("rp_bomb_1");
             mineImage = Content.Load<Texture2D>("rp_mine_2");
+            brickParticleImage = Content.Load<Texture2D>("rp_brick_explode_test_1");
             explodeImage = Content.Load<Texture2D>("rp_bomb_explode_1");
             mineExplodeImage = Content.Load<Texture2D>("rp_mine_explode_1");
-            brickTextureAtlas = Content.Load<Texture2D>("rp_bricks_sprite_1");
+            FixedBrickTextureAtlas = Content.Load<Texture2D>("rp_solid_bricks_2");
+            DestructableBrickTextureAtlas = Content.Load<Texture2D>("rp_bricks_damaged_3");
             environmentBackground = Content.Load<Texture2D>("rp_background_1");
             toolBoxBackGround = Content.Load<Texture2D>("rp_tool_bar");
             bombTimerFont = Content.Load<SpriteFont>("BombTimer");

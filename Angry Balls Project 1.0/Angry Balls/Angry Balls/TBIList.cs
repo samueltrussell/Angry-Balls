@@ -16,7 +16,6 @@ namespace Angry_Balls
         public List<FixedBrick> FixedBrickList = new List<FixedBrick>();
         public List<Bomb> PlacedBomb = new List<Bomb>();
         public List<ProxMine> placedMines = new List<ProxMine>();
-        public BombPlaced added;
 
         //ToolBox Start Poses
         Vector2 bombStart = new Vector2 ( 885, 100 );
@@ -45,46 +44,37 @@ namespace Angry_Balls
         public TBIList()
         {
             //Took dynamic items into another class
-            FixedBrickList.Add(new FixedBrick(startPose4, true));
-            FixedBrickList.Add(new FixedBrick(startPose5, true));
-            FixedBrickList.Add(new FixedBrick(startPose6, true));
+            FixedBrickList.Add(new DestructableBrick(startPose4, true));
+            FixedBrickList.Add(new DestructableBrick(startPose5, true));
+            FixedBrickList.Add(new DestructableBrick(startPose6, true));
 
-            FixedBrickList.Add(new FixedBrick(startPose7, true));
+            FixedBrickList.Add(new DestructableBrick(startPose7, true));
             FixedBrickList.Add(new FixedBrick(startPose8, true));
-            FixedBrickList.Add(new FixedBrick(startPose9, true));
+            FixedBrickList.Add(new DestructableBrick(startPose9, true));
 
             FixedBrickList.Add(new FixedBrick(startPose10, true));
-            FixedBrickList.Add(new FixedBrick(startPose11, true));
-            FixedBrickList.Add(new FixedBrick(startPose12, true));
+            FixedBrickList.Add(new DestructableBrick(startPose11, true));
+            FixedBrickList.Add(new DestructableBrick(startPose12, true));
 
             FixedBrickList.Add(new FixedBrick(startPose13, true));
-            FixedBrickList.Add(new FixedBrick(startPose14, true));
+            FixedBrickList.Add(new DestructableBrick(startPose14, true));
             FixedBrickList.Add(new FixedBrick(startPose15, true));
 
             //Add Bombs
             for (int i = 0; i < 10; i ++)
                 PlacedBomb.Add(new Bomb(bombStart));
-            //Add Mines
-            for(int i = 0; i < 10; i++)
+            ////Add Mines
+            for (int i = 0; i < 10; i++)
                 placedMines.Add(new ProxMine(mineStart));
             //Add Bricks
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    FixedBrickList.Add(new FixedBrick(brickStart, false));
-            //}
+            for (int i = 0; i < 10; i++)
+            {
+                FixedBrickList.Add(new FixedBrick(brickStart, false));
+            }
 
 
         }
-        //Need help with this
-        //public void AddRange(BombPlaced.added)
-        //{
-        //  PlacedBomb.Add("added");
-        //}
 
-        public class BombPlaced
-        {
-            public List<BombPlaced> PlacedBomb = new List<BombPlaced>();
-        }
 
     }
 }

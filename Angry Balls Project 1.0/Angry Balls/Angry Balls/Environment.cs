@@ -54,7 +54,7 @@ namespace Angry_Balls
             map = new Map();
             //justClicked = false;
             toolBox = new ToolBox();
-            gameState = GameState.levelBuilder;
+            gameState = GameState.run;
             angryBall = new FarseerBall(ballStartPose);
 
             //Physics Bodies for Walls

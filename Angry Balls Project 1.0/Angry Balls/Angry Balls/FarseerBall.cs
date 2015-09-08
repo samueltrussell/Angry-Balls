@@ -44,16 +44,10 @@ namespace Angry_Balls
             //initialize body physics parameters
             UnitConverter.toSimSpace(inputPosition);
             ballBody = BodyFactory.CreateCircle(Game1.world, UnitConverter.toSimSpace(RADIUS), 1.0f, UnitConverter.toSimSpace(inputPosition), 5);
-            
-            //don't move ball
             ballBody.BodyType = BodyType.Dynamic;
-            //move ball
-            //ballBody.BodyType = BodyType.Dynamic;
-
-            ballBody.GravityScale = 1.0f;
-            ballBody.Restitution = 0.95f;
+            ballBody.Restitution = 0.85f;
             ballBody.Friction = 0.0f;
-            ballBody.GravityScale = .15f;
+            ballBody.GravityScale = .35f;
         }
 
         public void Draw(SpriteBatch spriteBatch)
