@@ -51,8 +51,9 @@ namespace Angry_Balls
             //ballBody.BodyType = BodyType.Dynamic;
 
             ballBody.GravityScale = 1.0f;
-            ballBody.Restitution = 0.85f;
+            ballBody.Restitution = 0.95f;
             ballBody.Friction = 0.0f;
+            ballBody.GravityScale = .15f;
         }
 
         public void Draw(SpriteBatch spriteBatch)

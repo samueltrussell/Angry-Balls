@@ -30,14 +30,11 @@ namespace Angry_Balls
         public static SpriteFont bombTimerFont;
 
         //Audio
-        private SoundEffect bombExplosion;
-        private SoundEffect mineExplosion;
-
-        public static SoundEffectInstance bombInstance;
-        public static SoundEffectInstance mineInstance;
+        public static SoundEffect bombExplosion;
+        public static SoundEffect mineExplosion;
 
         //Game environment
-        Environment environment;
+        AngryBallsEnvironment environment;
         public static System.Random random;
 
         //Physics Engine
@@ -92,9 +89,6 @@ namespace Angry_Balls
             bombExplosion = Content.Load<SoundEffect>("TimeBomb");
             mineExplosion = Content.Load<SoundEffect>("Mine");
 
-            bombInstance = bombExplosion.CreateInstance();
-            mineInstance = mineExplosion.CreateInstance();
-
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             playButtonImage = Content.Load<Texture2D>("play_button_temp");
@@ -109,7 +103,7 @@ namespace Angry_Balls
             toolBoxBackGround = Content.Load<Texture2D>("rp_tool_bar");
             bombTimerFont = Content.Load<SpriteFont>("BombTimer");
 
-            environment = new Environment();
+            environment = new AngryBallsEnvironment();
             
 
             // TODO: use this.Content to load your game content here    
@@ -135,17 +129,25 @@ namespace Angry_Balls
                 Exit();
 
             // TODO: Add your update logic here
-            if (environment.gameState == Environment.GameState.initialize)
+            if (environment.gameState == AngryBallsEnvironment.GameState.initialize)
+            {
                 environment.initialize();
-            else if (environment.gameState == Environment.GameState.run)
+            }
+            else if (environment.gameState == AngryBallsEnvironment.GameState.run)
             {
                 environment.update();
-                //Console.WriteLine(Environment.angryBall.ballBody.Position.Y);
                 world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f, (1f / 30f)));
-                //Console.WriteLine(Environment.angryBall.ballBody.Position.Y);
+
             }
-            else if (environment.gameState == Environment.GameState.pause)
+            else if (environment.gameState == AngryBallsEnvironment.GameState.pause)
+            {      
                 environment.update();
+            }
+            else if(environment.gameState == AngryBallsEnvironment.GameState.levelBuilder)
+            {
+                environment.update();
+            }
+
 
 
             base.Update(gameTime);

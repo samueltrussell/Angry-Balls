@@ -13,15 +13,15 @@ namespace Angry_Balls
 
     class TBoxItem
     {
-        public Texture2D image;
-        public Vector2 position; //[x,y] position in pixel space for tracking, physics, and rendering
-        public Vector2 size; // [width, height] Size of the representatvie image in pixel space 
+        protected Texture2D image;
+        protected Vector2 position; //[x,y] position in pixel space for tracking, physics, and rendering
+        protected Vector2 size; // [width, height] Size of the representatvie image in pixel space 
         protected Vector2 imageOrigin;
         protected bool dragable = false;
-        public bool placed = false;
+        protected bool placed = false;
         protected bool destroyed = false;
-
-        public Color color;
+        protected Color color = Color.White;
+        protected Color dragColor;
 
         //Base class constructor, SHOULD be overloaded by each derived TBI
         public TBoxItem()
@@ -52,6 +52,7 @@ namespace Angry_Balls
                 mouseState.Y > position.Y - size.Y / 2 && mouseState.Y < position.Y + size.Y / 2 &&
                 isDragable())
             {
+                color = dragColor;
                 return true;
             }
             else
@@ -68,7 +69,7 @@ namespace Angry_Balls
 
         public virtual void Placed()
         {
-
+   
         }
 
         public bool IsDestroyed()

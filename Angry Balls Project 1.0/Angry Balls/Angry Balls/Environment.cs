@@ -14,7 +14,7 @@ using FarseerPhysics.Factories;
 
 namespace Angry_Balls
 {
-    class Environment
+    class AngryBallsEnvironment
     {
         Texture2D background;
         public static bool objectClicked = false;
@@ -40,11 +40,11 @@ namespace Angry_Balls
 
         protected Vector2 ballStartPose = new Vector2(150, 150);
 
-        public enum GameState { run, pause, initialize };
+        public enum GameState { run, pause, initialize, levelBuilder };
         public GameState gameState;
 
         //Environment Constructor
-        public Environment()
+        public AngryBallsEnvironment()
         {
             //Initialize the Buttons
             playPauseButton = new PlayPauseButton(gameState);
@@ -54,7 +54,7 @@ namespace Angry_Balls
             map = new Map();
             //justClicked = false;
             toolBox = new ToolBox();
-            gameState = GameState.run;
+            gameState = GameState.pause;
             angryBall = new FarseerBall(ballStartPose);
 
             //Physics Bodies for Walls
@@ -81,28 +81,12 @@ namespace Angry_Balls
 
             //Draw the Ball
             angryBall.Draw(spriteBatch);
-     
+
             //Draw ToolBox
             if (toolBox.Show()) toolBox.draw(spriteBatch);
-           
-            //Draw ToolBox Contents
-            foreach (Bomb element in map.TBIList.PlacedBomb)
-            {
-                element.draw(spriteBatch);
-            }
 
-            foreach (ProxMine element in map.TBIList.placedMines)
-            {
-                element.draw(spriteBatch);
-            }
-
-            //Draw Fixed Bricks (draw Map)
-            foreach (FixedBrick element in map.TBIList.FixedBrickList)
-            {
-                element.draw(spriteBatch);
-            }
-
-            //map.draw();
+            //Draw Items from the map
+            map.Draw(spriteBatch);
 
         }
 
@@ -111,30 +95,17 @@ namespace Angry_Balls
             //Handle Inputs
             MouseState mouseState = Mouse.GetState();
             Input.HandleButtons(playPauseButton, mouseState, ref gameState);
-            Input.HandleDragAndDrop(map, mouseState);
 
+            if (gameState == GameState.run || gameState == GameState.levelBuilder)
+            {
+                Input.HandleDragAndDrop(map, mouseState); //handle the drag and drop
+            }
+            
+            Input.HandleKeyboard(angryBall);//Handle Keyboard inputs
 
-            KeyboardState keyState = Keyboard.GetState();
-
-            if (keyState.IsKeyDown(Keys.Enter) && angryBall.ballBody.BodyType == BodyType.Static)
-            {
-                angryBall.ballBody.BodyType = BodyType.Dynamic;
-            }
-            if (keyState.IsKeyDown(Keys.P) && angryBall.ballBody.BodyType == BodyType.Dynamic)
-            {
-                angryBall.ballBody.BodyType = BodyType.Static;
-            }
-            if(keyState.IsKeyDown(Keys.Space))
-            {
-                angryBall.ballBody.ApplyForce(new Vector2(10.0f, -50.0f));
-            }
-            if(keyState.IsKeyDown(Keys.Q))
-            {
-                System.Environment.Exit(0);
-            }
-
-            //Update objects in the environment
+            //Update the map objects
             map.update();
+
         }
 
         public void initialize()

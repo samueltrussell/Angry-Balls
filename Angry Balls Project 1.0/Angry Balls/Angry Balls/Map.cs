@@ -55,16 +55,25 @@ namespace Angry_Balls
             return null;
         }
         //Move from env to map?
-        //public void Draw(SpriteBatch spriteBatch)
-        //{
-        //  Point screenSize = new Point { X = Game1.graphics.PreferredBackBufferWidth, Y = Game1.graphics.PreferredBackBufferHeight };
-        //Rectangle screen = new Rectangle(Point.Zero, screenSize);
-        //spriteBatch.Draw(background, screen, Color.White);
-        //
-        //foreach (Bomb element in map.TBIListDynamic.bombList)
-        //{
-        //  element.draw(spriteBatch);
-        //}
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            //Draw ToolBox Contents
+            foreach (Bomb element in TBIList.PlacedBomb)
+            {
+                element.draw(spriteBatch);
+            }
+
+            foreach (ProxMine element in TBIList.placedMines)
+            {
+                element.draw(spriteBatch);
+            }
+
+            //Draw Fixed Bricks (draw Map)
+            foreach (FixedBrick element in TBIList.FixedBrickList)
+            {
+                element.draw(spriteBatch);
+            }
+        }
 
         public void update()
         {

@@ -23,6 +23,7 @@ namespace Angry_Balls
         private Vector2 explosionForce = new Vector2(500, 500);
         private Body bombBody;
         private Explosion bombExplosion;
+        private SoundEffectInstance bombSFXInstance;
         private bool exploded = false;
         private int radius = 78 / 2;
 
@@ -33,24 +34,25 @@ namespace Angry_Balls
             imageOrigin = new Vector2 (position.X - image.Width / 2, position.Y - image.Height / 2);
             size = new Vector2 ( 78, 80 );
             dragable = true;
-            timer = 6.0;
+            timer = 5.0;
             timerLocation = new Vector2 ( position.X + size.X / 2 + 10,  position.Y - 10 );
             explodeLocation = position;
             explodeImage = Game1.explodeImage;
-            color = Color.White;
+            dragColor = Color.Red;
+            bombSFXInstance = Game1.bombExplosion.CreateInstance();
         }
 
         public void update()
         {
             if (placed)
             {
-                Game1.bombInstance.Play();
+                bombSFXInstance.Play();
                 timer -= 0.025;
             }
 
-            if(timer <= -0.55)
+            if(timer <= -1)
             {
-                Game1.bombInstance.Stop();
+                bombSFXInstance.Stop();
             }
 
             if (timer <= 0)
@@ -67,7 +69,7 @@ namespace Angry_Balls
             imageOrigin.X = position.X - image.Width / 2;
             imageOrigin.Y = position.Y - image.Height / 2;
 
-            //Explosion debug draw
+            //Explosion particles debug draw
             if (placed && exploded)
             {
                 bombExplosion.Draw(spriteBatch);
@@ -75,8 +77,8 @@ namespace Angry_Balls
 
             if (placed && timer > 0)//during countdown
             {
-                color = Color.White;
-                spriteBatch.DrawString(Game1.bombTimerFont, (int)timer + "!", new Vector2(timerLocation.X, timerLocation.Y), Color.Red);
+                //color = Color.White;
+                spriteBatch.DrawString(Game1.bombTimerFont, (int)(timer + 1) + "!", new Vector2(timerLocation.X, timerLocation.Y), Color.Red);
                 position = UnitConverter.toPixelSpace(bombBody.Position);
                 spriteBatch.Draw(image, position, null, color, bombBody.Rotation, bombBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
@@ -97,9 +99,11 @@ namespace Angry_Balls
             dragable = false;
             Vector2 initPosition = UnitConverter.toSimSpace(position);
 
+            //reset color
+            color = Color.White;
+
             //initialize body physics parameters
             bombBody = BodyFactory.CreateCircle(Game1.world, UnitConverter.toSimSpace(radius), 1.0f, initPosition);
-
             bombBody.BodyType = BodyType.Dynamic;
             bombBody.GravityScale = 1.0f;
             bombBody.Restitution = 0.05f;
@@ -117,9 +121,6 @@ namespace Angry_Balls
                 int yShift = Game1.random.Next(6) - 3;
                 explodeLocation.X += xShift;
                 explodeLocation.Y += yShift;
-
-                //Environment.angryBall.ballBody.ApplyForce(UnitConverter.toSimSpace(-explosionForce));
-                //bombBody.ApplyAngularImpulse(.20f);
 
                 if (!exploded)
                 {
