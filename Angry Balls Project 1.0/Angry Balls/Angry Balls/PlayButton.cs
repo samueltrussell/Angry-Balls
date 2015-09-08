@@ -17,13 +17,13 @@ namespace Angry_Balls
 
         private Texture2D pauseImage;
 
-        public PlayPauseButton(Environment.GameState gameState)
+        public PlayPauseButton(AngryBallsEnvironment.GameState gameState)
         {
             image = Game1.playButtonImage;
             pauseImage = Game1.pauseButtonImage;
 
             //initialize from gameState
-            if(gameState == Environment.GameState.pause)
+            if(gameState == AngryBallsEnvironment.GameState.pause)
             {
                 play = false;
                 pause = true;
@@ -40,27 +40,27 @@ namespace Angry_Balls
             Vector2 topLeft = new Vector2(position.X - size.X / 2, position.Y - size.Y / 2);
 
             if(play)
-            spriteBatch.Draw(image, new Rectangle(topLeft.ToPoint(), size.ToPoint()), Color.White);
+            spriteBatch.Draw(pauseImage, new Rectangle(topLeft.ToPoint(), size.ToPoint()), Color.White);
 
             else if(pause)
-            spriteBatch.Draw(pauseImage, new Rectangle(topLeft.ToPoint(), size.ToPoint()), Color.White);
+            spriteBatch.Draw(image, new Rectangle(topLeft.ToPoint(), size.ToPoint()), Color.White);
 
         }
 
-        public void Toggle(ref Environment.GameState gameState)
+        public void Toggle(ref AngryBallsEnvironment.GameState gameState)
         {
 
             if (play)
             {
                 play = false;
                 pause = true;
-                gameState = Environment.GameState.pause;
+                gameState = AngryBallsEnvironment.GameState.pause;
             }
             else if (pause)
             {
                 play = true;
                 pause = false;
-                gameState = Environment.GameState.run;
+                gameState = AngryBallsEnvironment.GameState.run;
             }
 
         }

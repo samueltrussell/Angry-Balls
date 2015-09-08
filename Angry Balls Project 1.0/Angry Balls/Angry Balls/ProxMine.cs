@@ -28,6 +28,7 @@ namespace Angry_Balls
         private Vector2 mineBodyOrigin;
         private Body mineBody;
         private Explosion mineExplosion;
+        private SoundEffectInstance mineSFXInstance;
 
         public ProxMine(Vector2 positionInput)
         {
@@ -37,14 +38,15 @@ namespace Angry_Balls
             dragable = true;
             timer = 0.0;
             explodeLocation = position;
-            color = Color.White;
+            dragColor = Color.Red;
+            mineSFXInstance = Game1.mineExplosion.CreateInstance();
         }
 
         public void update()
         {
             if (exploded)
             {
-                Game1.mineInstance.Play();
+                mineSFXInstance.Play();
                 Explode();
             }
         }
@@ -53,7 +55,6 @@ namespace Angry_Balls
         {
             if (placed && !exploded)//On Map
             {
-                color = Color.White;
                 position = UnitConverter.toPixelSpace(mineBody.Position);
                 spriteBatch.Draw(image, position, null, color, mineBody.Rotation, mineBodyOrigin, 1f, SpriteEffects.None, 0f);
             }
@@ -73,6 +74,9 @@ namespace Angry_Balls
             placed = true;
             dragable = false;
             Vector2 initPosition = UnitConverter.toSimSpace(position);
+            
+            //reset color
+            color = Color.White;
 
             //initialize body physics parameters
             mineBody = BodyFactory.CreateCircle(Game1.world, UnitConverter.toSimSpace(radius), 1.0f, initPosition);
@@ -96,11 +100,10 @@ namespace Angry_Balls
                 }
                 Vector2 force = fixtureB.Body.Position - fixtureA.Body.Position;
                 force *= explosionForce;
-                //fixtureB.Body.ApplyForce(force);
+
                 return true;
             }
             else return true;
-            //throw new NotImplementedException();
         }
 
         protected void Explode()
@@ -125,6 +128,7 @@ namespace Angry_Balls
             }
             else if(!destroyed)
             {
+                mineSFXInstance.Stop();
                 mineExplosion.cleanExplosion();
                 destroyed = true;
             }

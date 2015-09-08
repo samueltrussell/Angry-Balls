@@ -26,7 +26,6 @@ namespace Angry_Balls
             // On initial click only, get selected object back from the Map class
             if (justClicked == true)
             {
-                item.color = Color.Red;
                 justClicked = false;
             }
 
@@ -48,7 +47,7 @@ namespace Angry_Balls
             justClicked = true;
         }
 
-        public void HandleButtons(PlayPauseButton playPauseButton, MouseState mouseState, ref Environment.GameState gameState)
+        public void HandleButtons(PlayPauseButton playPauseButton, MouseState mouseState, ref AngryBallsEnvironment.GameState gameState)
         {
             if (justClicked)
             {
@@ -59,9 +58,13 @@ namespace Angry_Balls
                 }
             }
 
-            if (mouseState.LeftButton != ButtonState.Pressed && justClicked == true)
+            if (mouseState.LeftButton != ButtonState.Pressed && justClicked == false)
             {
                 justClicked = true;
+                if (selectedObject != null)
+                {
+                    selectedObject.Placed();
+                }
             }
         }
 
@@ -77,7 +80,6 @@ namespace Angry_Balls
 
                 if (selectedObject != null)
                 {
-                    selectedObject.color = Color.Red;
                     Update(selectedObject);
                 }
             }
@@ -90,6 +92,20 @@ namespace Angry_Balls
                     selectedObject.Placed();
                 }
 
+            }
+        }
+
+        public void HandleKeyboard(FarseerBall angryBall)
+        {
+            KeyboardState keyState = Keyboard.GetState();
+
+            if (keyState.IsKeyDown(Keys.Space))
+            {
+                angryBall.ballBody.ApplyForce(new Vector2(10.0f, -50.0f));
+            }
+            if (keyState.IsKeyDown(Keys.Q))
+            {
+                System.Environment.Exit(0);
             }
         }
     }

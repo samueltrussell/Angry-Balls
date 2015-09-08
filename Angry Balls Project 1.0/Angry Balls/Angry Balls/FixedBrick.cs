@@ -20,19 +20,20 @@ namespace Angry_Balls
 
         Body brickBody;
 
-        public FixedBrick(Vector2 positionInput)
+        public FixedBrick(Vector2 positionInput, bool initPlaced)
         {
             position = positionInput;
             image = Game1.brickTextureAtlas;
             size = new Vector2 { X = brickWidth, Y = brickHeight};
             dragable = true;
-
-            color = Color.White;
+            placed = initPlaced;
+            if (placed) { Placed(); }
+            dragColor = Color.Red;
         }
 
         public void draw(SpriteBatch spriteBatch)
         {
-            Vector2 sourceTopLeft = new Vector2 ( brickWidth, brickHeight );
+            Vector2 sourceTopLeft = new Vector2 ( 0, 0 );
             Vector2 sourceBottomRight = new Vector2 ( size.X, size.Y );
             Rectangle sourceRectangle = new Rectangle(sourceTopLeft.ToPoint(), sourceBottomRight.ToPoint());
 
@@ -53,11 +54,12 @@ namespace Angry_Balls
         {
             placed = true;
             dragable = false;
+            
+            //reset color
+            color = Color.White;
 
             //initialize body physics parameters
-
             brickBody = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(brickWidth), UnitConverter.toSimSpace(brickHeight), 1.0f, UnitConverter.toSimSpace(position));
-
             brickBody.BodyType = BodyType.Static;
             brickBody.OnCollision += BrickBody_OnCollision;
             brickBody.Restitution = 0.1f;

@@ -24,45 +24,45 @@ namespace Angry_Balls
         Vector2 brickStart = new Vector2( 885, 300 );
 
         //Positions will change according to levels
-        /*Vector2 startPose4 = new Vector2 ( 0,  400 );
-        Vector2 startPose5 = new Vector2 ( 85, 450 );
-        Vector2 startPose6 = new Vector2 ( 170, 500 );
+        Vector2 startPose4 = new Vector2(0, 400);
+        Vector2 startPose5 = new Vector2(85, 450);
+        Vector2 startPose6 = new Vector2(170, 500);
 
-        Vector2 startPose7 = new Vector2 ( 255, 550 );
-        Vector2 startPose8 = new Vector2 ( 340, 600 );
-        Vector2 startPose9 = new Vector2 ( 425, 650 );
+        Vector2 startPose7 = new Vector2(255, 550);
+        Vector2 startPose8 = new Vector2(340, 600);
+        Vector2 startPose9 = new Vector2(425, 650);
 
-        Vector2 startPose10 = new Vector2 ( 510, 700 );
-        Vector2 startPose11 = new Vector2 ( 595, 700 );
-        Vector2 startPose12 = new Vector2 ( 680, 700 );
+        Vector2 startPose10 = new Vector2(510, 700);
+        Vector2 startPose11 = new Vector2(595, 700);
+        Vector2 startPose12 = new Vector2(680, 700);
 
-        Vector2 startPose13 = new Vector2 ( 765, 850 );
-        Vector2 startPose14 = new Vector2 ( 750, 900 );
-        Vector2 startPose15 = new Vector2 ( 825, 950 );*/
+        Vector2 startPose13 = new Vector2(765, 850);
+        Vector2 startPose14 = new Vector2(765, 900);
+        Vector2 startPose15 = new Vector2(765, 950);
 
 
         //Initialisation for new lists must also be done here in the constructor
         public TBIList()
         {
             //Took dynamic items into another class
-            /*FixedBrickList.Add(new FixedBrick(startPose4));
-            FixedBrickList.Add(new FixedBrick(startPose5));
-            FixedBrickList.Add(new FixedBrick(startPose6));
+            FixedBrickList.Add(new FixedBrick(startPose4, true));
+            FixedBrickList.Add(new FixedBrick(startPose5, true));
+            FixedBrickList.Add(new FixedBrick(startPose6, true));
 
-            FixedBrickList.Add(new FixedBrick(startPose7));
-            FixedBrickList.Add(new FixedBrick(startPose8));
-            FixedBrickList.Add(new FixedBrick(startPose9));
+            FixedBrickList.Add(new FixedBrick(startPose7, true));
+            FixedBrickList.Add(new FixedBrick(startPose8, true));
+            FixedBrickList.Add(new FixedBrick(startPose9, true));
 
-            FixedBrickList.Add(new FixedBrick(startPose10));
-            FixedBrickList.Add(new FixedBrick(startPose11));
-            FixedBrickList.Add(new FixedBrick(startPose12));
+            FixedBrickList.Add(new FixedBrick(startPose10, true));
+            FixedBrickList.Add(new FixedBrick(startPose11, true));
+            FixedBrickList.Add(new FixedBrick(startPose12, true));
 
-            FixedBrickList.Add(new FixedBrick(startPose13));
-            FixedBrickList.Add(new FixedBrick(startPose14));
-            FixedBrickList.Add(new FixedBrick(startPose15));*/
+            FixedBrickList.Add(new FixedBrick(startPose13, true));
+            FixedBrickList.Add(new FixedBrick(startPose14, true));
+            FixedBrickList.Add(new FixedBrick(startPose15, true));
 
             //Add Bombs
-            for(int i = 0; i < 10; i ++)
+            for (int i = 0; i < 10; i ++)
                 PlacedBomb.Add(new Bomb(bombStart));
             //Add Mines
             for(int i = 0; i < 10; i++)
@@ -70,7 +70,7 @@ namespace Angry_Balls
             //Add Bricks
             for(int i = 0; i < 10; i++)
             {
-                FixedBrickList.Add(new FixedBrick(brickStart));
+                FixedBrickList.Add(new FixedBrick(brickStart,false));
             }
 
 
