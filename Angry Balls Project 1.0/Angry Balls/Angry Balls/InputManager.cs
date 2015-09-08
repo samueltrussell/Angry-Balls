@@ -70,7 +70,7 @@ namespace Angry_Balls
             {
                 if (TBIJustClicked == true)
                 {
-                    selectedObject = map.FindClickedObject(mouseState);
+                    selectedObject = map.FindClickedObject(mouseState, gameState);
                     TBIJustClicked = false;
                 }
 

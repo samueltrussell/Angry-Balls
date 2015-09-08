@@ -16,24 +16,25 @@ namespace Angry_Balls
     {
         protected int brickHeight = 45; //Px
         protected int brickWidth = 85; //Px
-        protected int brickStrength = 5;
-
-        Body brickBody;
+        protected int brickStrength = 6;
+        protected int type;
+        protected Body brickBody;
 
         public FixedBrick(Vector2 positionInput, bool initPlaced)
         {
             position = positionInput;
-            image = Game1.brickTextureAtlas;
+            image = Game1.FixedBrickTextureAtlas;
             size = new Vector2 { X = brickWidth, Y = brickHeight};
             dragable = true;
             placed = initPlaced;
             if (placed) { Placed(); }
             dragColor = Color.White;
+            type = Game1.random.Next(0, 10);
         }
 
-        public void draw(SpriteBatch spriteBatch)
+        public virtual void draw(SpriteBatch spriteBatch)
         {
-            Vector2 sourceTopLeft = new Vector2 ( 0, 0 );
+            Vector2 sourceTopLeft = new Vector2 ( 0, type * brickHeight + type);
             Vector2 sourceBottomRight = new Vector2 ( size.X, size.Y );
             Rectangle sourceRectangle = new Rectangle(sourceTopLeft.ToPoint(), sourceBottomRight.ToPoint());
 
@@ -67,24 +68,16 @@ namespace Angry_Balls
             brickBody.Friction = 0.5f;
         }
 
-        private bool BrickBody_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        public virtual void Update()
         {
-            if (fixtureB.Body.IsBullet)
-            {
-                TakeDamage();
-            }
+
+        }
+
+        protected virtual bool BrickBody_OnCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        {
 
             return true;
         }
 
-        private void TakeDamage()
-        {
-            brickStrength--;
-            if(!destroyed && brickStrength <= 0)
-            {
-                Game1.world.RemoveBody(this.brickBody);
-                destroyed = true;
-            }
-        }
     }
 }

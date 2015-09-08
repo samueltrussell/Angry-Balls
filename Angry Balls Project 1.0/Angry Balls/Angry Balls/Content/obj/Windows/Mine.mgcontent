@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/u1011486/Desktop/Git/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/Mine.wav</SourceFile>
-  <SourceTime>2015-09-08T09:26:24.6742499-06:00</SourceTime>
-  <DestFile>C:/Users/u1011486/Desktop/Git/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/bin/Windows/Mine.xnb</DestFile>
-  <DestTime>2015-09-08T09:27:42.7192499-06:00</DestTime>
+  <SourceFile>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/angry balls project 1.0/angry balls/Angry Balls/Content/Mine.wav</SourceFile>
+  <SourceTime>2015-09-06T13:24:43.728173-06:00</SourceTime>
+  <DestFile>C:/Users/u0468223/Desktop/GIT Repository/Angry-Balls/Angry-Balls/angry balls project 1.0/angry balls/Angry Balls/Content/bin/Windows/Mine.xnb</DestFile>
+  <DestTime>2015-09-08T16:29:45.1520927-06:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2015-04-29T11:14:44-06:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

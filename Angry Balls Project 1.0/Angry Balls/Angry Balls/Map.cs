@@ -18,12 +18,22 @@ namespace Angry_Balls
         public TBIList TBIList = new TBIList();
         public TBIListDynamic TBIListDynamic = new TBIListDynamic();
         private FixedBrickCreator fixedBrickCreator = new FixedBrickCreator();
+        private MineCreator mineCreator = new MineCreator();
 
-        public TBoxItem FindClickedObject(MouseState mouseState)
+        public TBoxItem FindClickedObject(MouseState mouseState, AngryBallsEnvironment.GameState gameState)
         {
-            if (fixedBrickCreator.isClicked(mouseState))
+            // Return Creators if we're in level builder mode
+            if (gameState == AngryBallsEnvironment.GameState.levelBuilder)
             {
-                return fixedBrickCreator;
+                if (fixedBrickCreator.isClicked(mouseState))
+                {
+                    return fixedBrickCreator;
+                }
+
+                if (mineCreator.isClicked(mouseState))
+                {
+                    return mineCreator;
+                }
             }
 
             foreach (Bomb element in TBIList.PlacedBomb)
@@ -50,35 +60,27 @@ namespace Angry_Balls
                 }
             }
 
-            //to move placed objects in TBIList
-            //foreach(Bomb element in TBIListDynamic.bombList)
-            //{
-            //  if (element.isClicked(mouseState))
-            //{
-            //  TBIList.AddRange();
-            //}
-            //}
             return null;
         }
         //Move from env to map?
         public void Draw(SpriteBatch spriteBatch, AngryBallsEnvironment.GameState gameState)
         {
+
+            //Draw Item Creators if we're in LevelBuilder mode
+            if (gameState == AngryBallsEnvironment.GameState.levelBuilder)
+            {
+                fixedBrickCreator.draw(spriteBatch);
+                mineCreator.draw(spriteBatch);
+            }
+
             //Draw ToolBox Contents
             foreach (Bomb element in TBIList.PlacedBomb)
             {
                 element.draw(spriteBatch);
             }
-
             foreach (ProxMine element in TBIList.placedMines)
             {
                 element.draw(spriteBatch);
-            }
-
-            //Draw Bricks & Brick Shit (draw Map)
-
-            if(gameState == AngryBallsEnvironment.GameState.levelBuilder)
-            {
-                fixedBrickCreator.draw(spriteBatch);
             }
 
             foreach (FixedBrick element in TBIList.FixedBrickList)
@@ -107,9 +109,10 @@ namespace Angry_Balls
                     TBIList.placedMines.Remove(element);
                 }
             }
-            //Check to see if any bricks have been destroyed, if so, remove them
+            //Check to see if any bricks have been destroyed, if so, handle it
             foreach(FixedBrick element in TBIList.FixedBrickList.Reverse<FixedBrick>())
             {
+                element.Update();
                 if (element.IsDestroyed())
                 {
                     TBIList.FixedBrickList.Remove(element);

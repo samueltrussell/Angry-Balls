@@ -37,7 +37,6 @@ namespace Angry_Balls
 
         //Play Controls
         private PlayPauseButton playPauseButton;
-        private SaveButton savebutton;
 
         protected Vector2 ballStartPose = new Vector2(150, 150);
 
@@ -47,17 +46,15 @@ namespace Angry_Balls
         //Environment Constructor
         public AngryBallsEnvironment()
         {
-            gameState = GameState.levelBuilder;
-
             //Initialize the Buttons
             playPauseButton = new PlayPauseButton(gameState);
-            savebutton = new SaveButton(gameState);
 
             background = Game1.environmentBackground;
             Input = new InputManager();
             map = new Map();
             //justClicked = false;
             toolBox = new ToolBox();
+            gameState = GameState.run;
             angryBall = new FarseerBall(ballStartPose);
 
             //Physics Bodies for Walls
@@ -84,10 +81,6 @@ namespace Angry_Balls
 
             //Draw the Ball
             angryBall.Draw(spriteBatch);
-
-            //Draw save button
-            if (gameState == AngryBallsEnvironment.GameState.levelBuilder)
-                savebutton.Draw(spriteBatch);
 
             //Draw ToolBox
             if (toolBox.Show()) toolBox.draw(spriteBatch);

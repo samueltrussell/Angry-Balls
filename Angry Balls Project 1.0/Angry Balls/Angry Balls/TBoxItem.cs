@@ -77,10 +77,10 @@ namespace Angry_Balls
 
         }
 
-
         public bool IsDestroyed()
         {
             return destroyed;
         }
+
     }
 }
