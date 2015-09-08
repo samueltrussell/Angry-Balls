@@ -17,10 +17,16 @@ namespace Angry_Balls
         //background = Game1.environmentBackground;
         public TBIList TBIList = new TBIList();
         public TBIListDynamic TBIListDynamic = new TBIListDynamic();
+        private FixedBrickCreator fixedBrickCreator = new FixedBrickCreator();
 
         public TBoxItem FindClickedObject(MouseState mouseState)
         {
-            foreach(Bomb element in TBIList.PlacedBomb)
+            if (fixedBrickCreator.isClicked(mouseState))
+            {
+                return fixedBrickCreator;
+            }
+
+            foreach (Bomb element in TBIList.PlacedBomb)
             {
                 if (element.isClicked(mouseState))
                 {
@@ -55,7 +61,7 @@ namespace Angry_Balls
             return null;
         }
         //Move from env to map?
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, AngryBallsEnvironment.GameState gameState)
         {
             //Draw ToolBox Contents
             foreach (Bomb element in TBIList.PlacedBomb)
@@ -68,7 +74,13 @@ namespace Angry_Balls
                 element.draw(spriteBatch);
             }
 
-            //Draw Fixed Bricks (draw Map)
+            //Draw Bricks & Brick Shit (draw Map)
+
+            if(gameState == AngryBallsEnvironment.GameState.levelBuilder)
+            {
+                fixedBrickCreator.draw(spriteBatch);
+            }
+
             foreach (FixedBrick element in TBIList.FixedBrickList)
             {
                 element.draw(spriteBatch);

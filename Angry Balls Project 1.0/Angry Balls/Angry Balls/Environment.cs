@@ -54,7 +54,7 @@ namespace Angry_Balls
             map = new Map();
             //justClicked = false;
             toolBox = new ToolBox();
-            gameState = GameState.pause;
+            gameState = GameState.levelBuilder;
             angryBall = new FarseerBall(ballStartPose);
 
             //Physics Bodies for Walls
@@ -86,7 +86,7 @@ namespace Angry_Balls
             if (toolBox.Show()) toolBox.draw(spriteBatch);
 
             //Draw Items from the map
-            map.Draw(spriteBatch);
+            map.Draw(spriteBatch, gameState);
 
         }
 
@@ -94,12 +94,9 @@ namespace Angry_Balls
         {
             //Handle Inputs
             MouseState mouseState = Mouse.GetState();
-            Input.HandleButtons(playPauseButton, mouseState, ref gameState);
+            Input.HandleButtons(map, playPauseButton, mouseState, ref gameState);
 
-            if (gameState == GameState.run || gameState == GameState.levelBuilder)
-            {
-                Input.HandleDragAndDrop(map, mouseState); //handle the drag and drop
-            }
+            Input.HandleDragAndDrop(map, mouseState, gameState); //handle the drag and drop
             
             Input.HandleKeyboard(angryBall);//Handle Keyboard inputs
 
