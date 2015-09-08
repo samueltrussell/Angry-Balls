@@ -12,25 +12,32 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Angry_Balls
 {
     public class Level
-    {   
-        [XmlElement("Layer")]
-        public List<Layer> Layer;
-        public Vector2 TileDimensions;
+    {
+        public int[,] Values { get; set; }
 
-        // initialising content for the level
-        public void Initialize(ContentManager content)
+        public Level(int[,] values)
         {
-            foreach (Layer l in Layer)
+            Values = values;
+        }
+
+        public int GetValue(int row, int column)
+        {
+            return Values[row, column];
+        }
+
+        public int Rows
+        {
+            get
             {
-                l.Initialize(content, TileDimensions);
+                return Values.GetLength(0);
             }
         }
-        // drawing initialised content
-        public void Draw(SpriteBatch spritebatch)
+
+        public int Columns
         {
-            foreach (Layer l in Layer)
+            get
             {
-                l.Draw(spritebatch);
+                return Values.GetLength(1);
             }
         }
     }

@@ -20,7 +20,7 @@ namespace Angry_Balls
         IServiceProvider Services;
         public Editor()
         {
-            level = new Level();
+            //level = new Level();
             content = new ContentManager(Services, "Content");
             //spritebatch = new SpriteBatch(GraphicsDevice);
 
@@ -32,14 +32,14 @@ namespace Angry_Balls
             XmlSerializer xml = new XmlSerializer(level.GetType());
             Stream stream = File.Open("filename.xml", FileMode.Open);
             level = (Level)xml.Deserialize(stream);
-            level.Initialize(content);
+            //level.Initialize(content);
         }
         // drawing the level
         public void Draw()
         {
             //GraphicsDevice.Clear(Color.CornflowerBlue);
             spritebatch.Begin();
-            level.Draw(spritebatch);
+            //level.Draw(spritebatch);
             spritebatch.End();
         }
     }

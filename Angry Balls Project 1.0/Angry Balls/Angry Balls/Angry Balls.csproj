@@ -49,6 +49,8 @@
     <Compile Include="InputManager.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="LevelRead.cs" />
+    <Compile Include="LevelWrite.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="PlayButton.cs" />
     <Compile Include="Program.cs" />
