@@ -104,7 +104,7 @@ namespace Angry_Balls
             mineExplodeImage = Content.Load<Texture2D>("rp_mine_explode_1");
             FixedBrickTextureAtlas = Content.Load<Texture2D>("rp_solid_bricks_2");
             DestructableBrickTextureAtlas = Content.Load<Texture2D>("rp_bricks_damaged_3");
-            environmentBackground = Content.Load<Texture2D>("rp_background_1");
+            environmentBackground = Content.Load<Texture2D>("rp_background_1.png");
             toolBoxBackGround = Content.Load<Texture2D>("rp_tool_bar");
             bombTimerFont = Content.Load<SpriteFont>("BombTimer");
             saveImage = Content.Load<Texture2D>("save");
