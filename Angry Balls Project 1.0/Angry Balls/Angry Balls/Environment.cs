@@ -17,6 +17,9 @@ namespace Angry_Balls
     class AngryBallsEnvironment
     {
         Texture2D background;
+        Texture2D border;
+        Texture2D bigCog;
+        Texture2D clawOpen;
         public static bool objectClicked = false;
 
         private InputManager Input;
@@ -35,6 +38,9 @@ namespace Angry_Balls
         private Vector2 ceilingPosition = UnitConverter.toSimSpace(new Vector2(480, -640));
         private Vector2 floorPosition = UnitConverter.toSimSpace(new Vector2(480, 1360));
 
+        private Vector2 bigCogPosition = UnitConverter.toSimSpace(new Vector2(1200, 760));
+        private Vector2 clawopenPosition = UnitConverter.toSimSpace(new Vector2(480, 100));
+
         //Play Controls
         private PlayPauseButton playPauseButton;
 
@@ -50,6 +56,9 @@ namespace Angry_Balls
             playPauseButton = new PlayPauseButton(gameState);
 
             background = Game1.environmentBackground;
+            border = Game1.borderImage;
+            bigCog = Game1.bigCog;
+            clawOpen = Game1.clawOpen;
             Input = new InputManager();
             map = new Map();
             //justClicked = false;
@@ -58,9 +67,9 @@ namespace Angry_Balls
             angryBall = new FarseerBall(ballStartPose);
 
             //Physics Bodies for Walls
-            leftWall = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(10), UnitConverter.toSimSpace(2560), 1.0f, leftWallPosition);
+            leftWall = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(10), UnitConverter.toSimSpace(2450), 1.0f, leftWallPosition);
             leftWall.BodyType = BodyType.Static;
-            rightWall = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(10), UnitConverter.toSimSpace(2560), 1.0f, rightWallPosition);
+            rightWall = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(10), UnitConverter.toSimSpace(2550), 1.0f, rightWallPosition);
             rightWall.BodyType = BodyType.Static;
             ceiling = BodyFactory.CreateRectangle(Game1.world, UnitConverter.toSimSpace(960), UnitConverter.toSimSpace(10), 1.0f, ceilingPosition);
             ceiling.BodyType = BodyType.Static;
@@ -75,6 +84,10 @@ namespace Angry_Balls
             Point screenSize = new Point { X = Game1.graphics.PreferredBackBufferWidth, Y = Game1.graphics.PreferredBackBufferHeight };
             Rectangle screen = new Rectangle(Point.Zero, screenSize);
             spriteBatch.Draw(background, screen, Color.White);
+            spriteBatch.Draw(border, screen, Color.White);
+            //positions are not being specified?
+            spriteBatch.Draw(clawOpen, clawopenPosition, Color.White);
+            spriteBatch.Draw(bigCog, bigCogPosition, Color.White);
 
             //Draw the control Buttons
             playPauseButton.Draw(spriteBatch);

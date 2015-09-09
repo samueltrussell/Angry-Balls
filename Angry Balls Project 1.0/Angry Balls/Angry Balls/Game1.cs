@@ -31,6 +31,9 @@ namespace Angry_Balls
         public static Texture2D brickParticleImage;
         public static SpriteFont bombTimerFont;
         public static Texture2D saveImage;
+        public static Texture2D borderImage;
+        public static Texture2D clawOpen;
+        public static Texture2D bigCog;
 
         //Audio
         public static SoundEffect bombExplosion;
@@ -104,11 +107,13 @@ namespace Angry_Balls
             mineExplodeImage = Content.Load<Texture2D>("rp_mine_explode_1");
             FixedBrickTextureAtlas = Content.Load<Texture2D>("rp_solid_bricks_2");
             DestructableBrickTextureAtlas = Content.Load<Texture2D>("rp_bricks_damaged_3");
-            environmentBackground = Content.Load<Texture2D>("rp_background_1.png");
+            environmentBackground = Content.Load<Texture2D>("rp_background_1");
             toolBoxBackGround = Content.Load<Texture2D>("rp_tool_bar");
             bombTimerFont = Content.Load<SpriteFont>("BombTimer");
             saveImage = Content.Load<Texture2D>("save");
-
+            borderImage = Content.Load<Texture2D>("rp_border_1");
+            clawOpen = Content.Load<Texture2D>("rp_claw_open");
+            bigCog = Content.Load<Texture2D>("rp_big_cog_1");
             environment = new AngryBallsEnvironment();
             
 

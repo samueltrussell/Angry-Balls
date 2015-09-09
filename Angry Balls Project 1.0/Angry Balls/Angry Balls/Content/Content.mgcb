@@ -118,17 +118,6 @@
 /processorParam:TextureFormat=Color
 /build:rp_bomb_and_mine_sprite_1.png
 
-#begin rp_background_1.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:rp_background_1.jpg
-
 #begin rp_bomb_1.png
 /importer:TextureImporter
 /processor:TextureProcessor
