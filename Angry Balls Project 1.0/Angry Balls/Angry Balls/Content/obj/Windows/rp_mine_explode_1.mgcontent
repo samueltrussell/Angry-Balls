@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/u1011486/Desktop/Git/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_mine_explode_1.png</SourceFile>
-  <SourceTime>2015-09-08T09:26:24.7834499-06:00</SourceTime>
-  <DestFile>C:/Users/u1011486/Desktop/Git/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/bin/Windows/rp_mine_explode_1.xnb</DestFile>
-  <DestTime>2015-09-08T16:52:20.7094456-06:00</DestTime>
+  <SourceFile>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/rp_mine_explode_1.png</SourceFile>
+  <SourceTime>2015-09-08T23:38:45.8900362-06:00</SourceTime>
+  <DestFile>C:/Users/Art/Desktop/GIT/Angry-Balls/Angry Balls Project 1.0/Angry Balls/Angry Balls/Content/bin/Windows/rp_mine_explode_1.xnb</DestFile>
+  <DestTime>2015-09-08T23:40:39.7653825-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T11:14:44-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

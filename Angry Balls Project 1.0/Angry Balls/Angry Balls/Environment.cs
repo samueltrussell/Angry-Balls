@@ -43,6 +43,7 @@ namespace Angry_Balls
 
         //Play Controls
         private PlayPauseButton playPauseButton;
+        public static BuilderButton builderButton;
 
         protected Vector2 ballStartPose = new Vector2(150, 150);
 
@@ -54,6 +55,7 @@ namespace Angry_Balls
         {
             //Initialize the Buttons
             playPauseButton = new PlayPauseButton(gameState);
+            builderButton = new BuilderButton(gameState);
 
             background = Game1.environmentBackground;
             border = Game1.borderImage;
@@ -87,10 +89,11 @@ namespace Angry_Balls
             spriteBatch.Draw(border, screen, Color.White);
             //positions are not being specified?
             spriteBatch.Draw(clawOpen, clawopenPosition, Color.White);
-            spriteBatch.Draw(bigCog, bigCogPosition, Color.White);
+            //spriteBatch.Draw(bigCog, bigCogPosition, Color.White);
 
             //Draw the control Buttons
             playPauseButton.Draw(spriteBatch);
+            builderButton.Draw(spriteBatch);
 
             //Draw the Ball
             angryBall.Draw(spriteBatch);
@@ -107,7 +110,7 @@ namespace Angry_Balls
         {
             //Handle Inputs
             MouseState mouseState = Mouse.GetState();
-            Input.HandleButtons(map, playPauseButton, mouseState, ref gameState);
+            Input.HandleButtons(map, playPauseButton, builderButton, mouseState, ref gameState);
 
             Input.HandleDragAndDrop(map, mouseState, gameState); //handle the drag and drop
             

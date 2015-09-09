@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Bomb.cs" />
     <Compile Include="BrickExplosion.cs" />
+    <Compile Include="BuilderButton.cs" />
     <Compile Include="DestructableBrick.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="Explosion.cs" />

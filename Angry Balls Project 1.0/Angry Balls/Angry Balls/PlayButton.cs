@@ -54,12 +54,14 @@ namespace Angry_Balls
             {
                 play = false;
                 pause = true;
+                AngryBallsEnvironment.builderButton.SetBuild(true);
                 gameState = AngryBallsEnvironment.GameState.pause;
             }
             else if (pause)
             {
                 play = true;
                 pause = false;
+                AngryBallsEnvironment.builderButton.SetBuild(false);
                 gameState = AngryBallsEnvironment.GameState.run;
             }
 

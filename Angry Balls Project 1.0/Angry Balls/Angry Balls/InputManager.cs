@@ -47,7 +47,7 @@ namespace Angry_Balls
             TBIJustClicked = true;
         }
 
-        public void HandleButtons(Map map, PlayPauseButton playPauseButton, MouseState mouseState, ref AngryBallsEnvironment.GameState gameState)
+        public void HandleButtons(Map map, PlayPauseButton playPauseButton, BuilderButton builderButton, MouseState mouseState, ref AngryBallsEnvironment.GameState gameState)
         {
             if (buttonJustClicked)
             {
@@ -56,6 +56,12 @@ namespace Angry_Balls
                     playPauseButton.Toggle(ref gameState);
                     buttonJustClicked = false;
                 }
+                else if(builderButton.isClicked(mouseState) && (!builderButton.GetState() || builderButton.GetState()))
+                {
+                    builderButton.Toggle(ref gameState);
+                    buttonJustClicked = false;
+                }
+
             }
 
             if (mouseState.LeftButton != ButtonState.Pressed && buttonJustClicked == false)

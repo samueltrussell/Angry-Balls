@@ -34,6 +34,7 @@ namespace Angry_Balls
         public static Texture2D borderImage;
         public static Texture2D clawOpen;
         public static Texture2D bigCog;
+        public static Texture2D builderImage;
 
         //Audio
         public static SoundEffect bombExplosion;
@@ -110,10 +111,11 @@ namespace Angry_Balls
             environmentBackground = Content.Load<Texture2D>("rp_background_1");
             toolBoxBackGround = Content.Load<Texture2D>("rp_tool_bar");
             bombTimerFont = Content.Load<SpriteFont>("BombTimer");
-            saveImage = Content.Load<Texture2D>("save");
+            //saveImage = Content.Load<Texture2D>("save");
             borderImage = Content.Load<Texture2D>("rp_border_1");
             clawOpen = Content.Load<Texture2D>("rp_claw_open");
-            bigCog = Content.Load<Texture2D>("rp_big_cog_1");
+            //bigCog = Content.Load<Texture2D>("rp_big_cog_1");
+            builderImage = Content.Load<Texture2D>("BuilderIcon");
             environment = new AngryBallsEnvironment();
             
 
